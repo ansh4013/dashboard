@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#050714;
+    --bg-glow-1: rgba(124,92,255,0.16);
+    --bg-glow-2: rgba(0,217,255,0.10);
+    --surface-1:#0B0F24;
+    --surface-2:#11163a;
+    --border:rgba(140,150,220,0.16);
+    --border-strong:rgba(140,150,220,0.32);
+    --text-primary:#F1F3FC;
+    --text-secondary:#8B93BE;
+    --text-muted:#5B6290;
+    --violet:#7C5CFF;
+    --cyan:#00D9FF;
+    --green:#3ED598;
+    --amber:#FFB74D;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(720px 420px at 12% -8%, var(--bg-glow-1), transparent 60%),
+      radial-gradient(640px 480px at 100% 0%, var(--bg-glow-2), transparent 55%),
+      linear-gradient(rgba(140,150,220,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(140,150,220,0.045) 1px, transparent 1px),
+      var(--bg);
+    background-size:auto, auto, 42px 42px, 42px 42px, auto;
+    color:var(--text-primary);
+    font-family:'Inter', sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+
+  .cursor-glow{
+    position:fixed; width:400px; height:400px; border-radius:50%;
+    background:radial-gradient(circle, rgba(124,92,255,0.15), transparent 70%);
+    pointer-events:none; z-index:0; filter:blur(40px);
+    transition:transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .wrap{ max-width:920px; margin:0 auto; padding:40px 24px 100px; position:relative; z-index:1; }
+
+  .nav{ display:flex; align-items:center; justify-content:space-between; margin-bottom:60px; opacity:0; animation:fadeInDown 0.6s ease 0.1s forwards; }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand-mark{
+    width:34px; height:34px; border-radius:9px;
+    background:linear-gradient(135deg, var(--violet), var(--cyan));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:16px; color:#050714;
+    flex-shrink:0; transition:transform 0.3s ease;
+  }
+  .brand-mark:hover{ transform:scale(1.05) rotate(5deg); }
+  .brand-text{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:19px; letter-spacing:0.2px; }
+
+  .hero{ margin-bottom:80px; opacity:0; animation:fadeInUp 0.8s ease 0.2s forwards; }
+  .hero-eyebrow{
+    display:inline-flex; align-items:center; gap:8px; font-size:11.5px; font-weight:600;
+    letter-spacing:0.12em; color:var(--cyan); background:rgba(0,217,255,0.08);
+    border:1px solid rgba(0,217,255,0.25); border-radius:100px; padding:6px 14px; margin-bottom:18px;
+  }
+  .hero-eyebrow-dot{ width:6px; height:6px; border-radius:50%; background:var(--green); box-shadow:0 0 0 3px rgba(62,213,152,0.2); animation:pulse 2s ease-in-out infinite; }
+  .hero-title{
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:clamp(48px, 10vw, 120px); line-height:0.95;
+    margin:0; letter-spacing:-0.02em;
+    background:linear-gradient(135deg, #FFFFFF 20%, var(--cyan) 80%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero-sub{ font-size:16px; color:var(--text-secondary); max-width:520px; margin:18px 0 0; line-height:1.6; }
+  .hero-rule{ width:56px; height:2px; border-radius:2px; margin:26px 0 0; background:linear-gradient(90deg, var(--violet), var(--cyan)); }
+
+  .tagline{
+    background:var(--surface-1); border:1px solid var(--border); border-radius:var(--radius);
+    padding:16px 18px; margin-bottom:32px; font-family:'Space Grotesk', sans-serif;
+    font-size:15px; font-weight:500; text-align:center; opacity:0; animation:fadeIn 0.6s ease 0.3s forwards;
+    transition:all 0.3s ease;
+  }
+  .tagline:hover{ border-color:var(--border-strong); }
+
+  .stats{ display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:28px; opacity:0; animation:fadeInUp 0.8s ease 0.4s forwards; }
+  @media(min-width:640px){ .stats{ grid-template-columns:repeat(4,1fr); } }
+  .stat{
+    background:var(--surface-1); border:1px solid var(--border); border-radius:var(--radius);
+    padding:18px 16px; transition:all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .stat:hover{ border-color:var(--border-strong); transform:translateY(-2px); box-shadow:0 12px 32px rgba(124,92,255,0.2); }
+  .stat-num{ font-family:'Space Grotesk', sans-serif; font-size:28px; font-weight:700; }
+  .stat-label{ font-size:12px; color:var(--text-secondary); margin-top:6px; }
+
+  .section{ margin-bottom:80px; opacity:0; animation:fadeInUp 0.8s ease forwards; }
+  @for $i from 1 to 10 { .section:nth-of-type($i) { animation-delay: calc(0.5s + $i * 0.1s); } }
+
+  .section-label{
+    font-family:'Space Grotesk', sans-serif; font-size:13px; font-weight:700;
+    letter-spacing:0.08em; color:var(--text-muted); margin:0 0 18px 2px; display:flex; justify-content:space-between; align-items:center;
+  }
+
+  .grid{ display:grid; grid-template-columns:1fr; gap:14px; margin-bottom:32px; }
+  @media(min-width:640px){ .grid{ grid-template-columns:1fr 1fr; } }
+
+  .card{
+    background:var(--surface-1);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:18px;
+    position:relative;
+    overflow:hidden;
+    transition:all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .card::before{
+    content:''; position:absolute; top:0; left:0; right:0; height:2px;
+    background:linear-gradient(90deg, var(--violet), var(--cyan));
+    opacity:0; transition:opacity 0.3s ease;
+  }
+  .card:hover{ border-color:var(--border-strong); transform:translateY(-4px); box-shadow:0 16px 40px rgba(124,92,255,0.25); }
+  .card:hover::before{ opacity:1; }
+
+  .card-name{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:17px; margin-bottom:8px; }
+  .card-url{ font-size:13px; color:var(--cyan); text-decoration:none; }
+  .card-url:hover{ text-decoration:underline; }
+  .card-desc{ font-size:13.5px; color:var(--text-secondary); line-height:1.5; margin:8px 0 0; }
+
+  .badge{
+    font-size:11px; font-weight:600; padding:4px 10px; border-radius:100px;
+    white-space:nowrap; border:1px solid transparent; display:inline-block;
+  }
+  .badge.live{ background:rgba(62,213,152,0.12); color:var(--green); border-color:rgba(62,213,152,0.3); }
+  .badge.progress{ background:rgba(255,183,77,0.12); color:var(--amber); border-color:rgba(255,183,77,0.3); }
+  .badge.archived{ background:rgba(139,147,190,0.12); color:var(--text-secondary); border-color:var(--border); }
+
+  .empty{ padding:28px 0; color:var(--text-muted); text-align:center; font-size:14px; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+
+  .chips{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:32px; }
+  .chip{ background:var(--surface-1); border:1px solid var(--border); border-radius:100px; padding:9px 16px; font-size:13.5px; font-weight:500; transition:all 0.3s ease; }
+  .chip:hover{ border-color:var(--border-strong); }
+
+  .cofounder-intro{ font-size:15px; line-height:1.7; color:var(--text-secondary); max-width:580px; margin-bottom:32px; }
+  .cofounder-grid{ display:grid; grid-template-columns:1fr; gap:14px; margin-bottom:32px; }
+  @media(min-width:640px){ .cofounder-grid{ grid-template-columns:1fr 1fr; } }
+  .cofounder-card{ background:var(--surface-1); border:1px solid var(--border); border-radius:var(--radius); padding:22px; transition:all 0.3s ease; }
+  .cofounder-card:hover{ border-color:var(--border-strong); transform:translateY(-3px); }
+  .cofounder-name{ font-size:15px; font-weight:600; margin-bottom:8px; }
+  .cofounder-degrees{ font-size:13px; color:var(--text-secondary); line-height:1.6; }
+
+  .cta-link{
+    display:inline-flex; text-decoration:none; background:linear-gradient(135deg, var(--violet), #5B3FE0);
+    color:#fff; border-radius:10px; padding:12px 24px; font-weight:600; font-size:14px;
+    box-shadow:0 0 0 1px rgba(124,92,255,0.4), 0 8px 24px -8px rgba(124,92,255,0.6);
+    transition:all 0.3s ease;
+  }
+  .cta-link:hover{ transform:translateY(-2px); box-shadow:0 0 0 1px rgba(124,92,255,0.6), 0 12px 32px rgba(124,92,255,0.8); }
+
+  .contact-card{ background:var(--surface-1); border:1px solid var(--border); border-radius:var(--radius); padding:20px; }
+  .contact-row{ display:flex; align-items:center; justify-content:space-between; gap:14px; padding:18px 0; border-bottom:1px solid var(--border); }
+  .contact-row:first-child{ border-top:1px solid var(--border); }
+  .contact-left{ display:flex; align-items:center; gap:12px; }
+  .contact-icon{ width:36px; height:36px; border-radius:10px; background:var(--surface-2); display:flex; align-items:center; justify-content:center; color:var(--cyan); }
+  .contact-label{ font-size:11.5px; color:var(--text-muted); }
+  .contact-value{ font-size:14px; font-weight:500; }
+  .contact-value a{ color:var(--text-primary); text-decoration:none; border-bottom:1px solid var(--cyan); }
+  .contact-value.empty-val{ color:var(--text-muted); font-style:italic; }
+
+  @keyframes fadeInDown {
+    from { opacity:0; transform:translateY(-20px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+  @keyframes fadeInUp {
+    from { opacity:0; transform:translateY(20px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity:0; }
+    to { opacity:1; }
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow:0 0 0 3px rgba(62,213,152,0.2); }
+    50% { box-shadow:0 0 0 8px rgba(62,213,152,0.05); }
+  }
+</style>
+
+<style id="technex-v2">
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+linear-gradient(rgba(0,255,255,.04) 1px,transparent 1px),
+linear-gradient(90deg,rgba(0,255,255,.04) 1px,transparent 1px);
+background-size:50px 50px;
+pointer-events:none;
+z-index:0;
+}
+body::after{
+content:"";
+position:fixed;
+width:1200px;
+height:1200px;
+left:50%;
+top:-400px;
+transform:translateX(-50%);
+background:radial-gradient(circle,rgba(0,255,255,.12),rgba(124,58,237,.10),transparent 70%);
+filter:blur(80px);
+pointer-events:none;
+}
+.wrap{max-width:1400px!important;}
+.nav,.tagline,.stat,.card,.cofounder-card,.contact-card{
+background:rgba(10,15,35,.55)!important;
+backdrop-filter:blur(24px);
+border:1px solid rgba(0,255,255,.12)!important;
+box-shadow:0 10px 40px rgba(0,0,0,.35);
+}
+.hero-title{
+font-size:clamp(64px,12vw,150px)!important;
+background:linear-gradient(90deg,#fff,#00ffff,#7c3aed)!important;
+-webkit-background-clip:text!important;
+-webkit-text-fill-color:transparent!important;
+text-shadow:0 0 40px rgba(0,255,255,.25);
+}
+.hero-rule{
+height:4px!important;
+width:120px!important;
+box-shadow:0 0 20px rgba(0,255,255,.6);
+}
+.stat:hover,.card:hover,.cofounder-card:hover,.contact-card:hover{
+transform:translateY(-8px) scale(1.02)!important;
+box-shadow:0 0 35px rgba(0,255,255,.18),0 0 80px rgba(124,58,237,.15)!important;
+}
+.brand-mark{
+box-shadow:0 0 30px rgba(0,255,255,.45);
+}
+.section-label{
+color:#00ffff!important;
+letter-spacing:.18em!important;
+}
+.cta-link{
+background:linear-gradient(135deg,#00ffff,#7c3aed)!important;
+box-shadow:0 0 25px rgba(0,255,255,.35)!important;
+}
+</style>
+
+</head>
+<body>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<div class="wrap">
+
+  <div class="nav">
+    <div class="brand">
+      <div class="brand-mark">M</div>
+      <div class="brand-text">My dashboard</div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span>Live workspace</div>
+    <h1 class="hero-title">Dashboard</h1>
+    <div class="hero-sub">Every site I've shipped, my traction, and the people I'm looking to build with — in one place.</div>
+    <div class="hero-rule"></div>
+  </div>
+
+  <div class="tagline">We Welcome new ideas 💡 and creativity</div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num">1</div><div class="stat-label">People on the team</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">Software in progress</div></div>
+    <div class="stat"><div class="stat-num">0</div><div class="stat-label">Companies interested</div></div>
+    <div class="stat"><div class="stat-num">1k+</div><div class="stat-label">Followers</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">INSPIRED BY</div>
+    <div class="empty"> 1.⭕ Google
+2.🟥🟩
+   🟦🟨 Microsoft
+3.I̶B̶M̶  IBM
+4.∞ Meta
+5.SPACEX
+6.👁️‍🗨️ NVIDIA
+7.🌀 OpenAI
+8.⫷A⫸ Anthropic
+9.◉ wipro
+10. ⌣   Amazon
+11.T  TESLA
+12.ORACLE </div>
+  </div>
+  <div class="section">
+    <div class="section-label">working in</div>
+    <div class="empty">not added yet</div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">AFFILIATIONS</div>
+    <div class="empty">Nothing added yet.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">YOUR SITES</div>
+    <div class="empty">not added</div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">LOOKING FOR CO-FOUNDERS WHO ARE AIMING AT(myself as an entrepreneur)</div>
+    <div class="cofounder-intro">Aiming to build something on the scale of Google, Microsoft, Amazon and IBM — not as an employee, but as a founder putting real ownership behind it. If you'd rather build a tech giant than work inside one, get in touch.(are you aiming at)</div>
+    <div class="cofounder-grid">
+      <div class="cofounder-card"><div class="cofounder-name">Business and management</div><div class="cofounder-degrees">BTech + MBA<br>BTech + MIM</div></div>
+      <div class="cofounder-card"><div class="cofounder-name">Research field</div><div class="cofounder-degrees">BTech + MTech</div></div>
+      <div class="cofounder-card"><div class="cofounder-name">Tech field</div><div class="cofounder-degrees">BTech + MS</div></div>
+      <div class="cofounder-card"><div class="cofounder-name">Biotech engineers</div><div class="cofounder-degrees">BTech in Biotechnology</div></div>
+    </div>
+    <a class="cta-link" href="#contactSection">Contact now</a>
+  </div>
+  <div class="section">
+    <div class="section-label">KYA KABHI SOCHA HAI? <br>Who is an entrepreneur?</div>
+    <div class="empty">Nothing added .</div>
+  </div>
+
+  <div class="section" id="contactSection">
+    <div class="section-label">CONTACT</div>
+    <div class="contact-card">
+      <div class="contact-row">
+        <div class="contact-left">
+          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div><div class="contact-label">WhatsApp</div><div class="contact-value empty-val">9984201827</div></div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-left">
+          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><div class="contact-label">Phone</div><div class="contact-value empty-val">Not set</div></div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-left">
+          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <div><div class="contact-label">Website</div><div class="contact-value empty-val">still under progress</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const glow = document.getElementById('cursorGlow');
+document.addEventListener('mousemove', (e) => {
+  glow.style.transform = 'translate(calc(' + e.clientX + 'px - 50%), calc(' + e.clientY + 'px - 50%))';
+});
+</script>
+</body>
+</html>
