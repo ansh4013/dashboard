@@ -81,7 +81,225 @@
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
+.inspiration-board{
+    position:relative;
+    overflow:hidden;
+    padding:70px 55px;
+    border-radius:36px;
 
+    background:
+    radial-gradient(circle at top right,
+    rgba(255,215,0,.08),
+    transparent 35%),
+
+    radial-gradient(circle at bottom left,
+    rgba(255,140,0,.06),
+    transparent 40%),
+
+    linear-gradient(
+    145deg,
+    #050505,
+    #0c0c0c,
+    #050505);
+
+    border:1px solid rgba(255,215,0,.12);
+
+    box-shadow:
+    0 30px 100px rgba(0,0,0,.6);
+
+    perspective:1200px;
+}
+
+.inspiration-board::before{
+    content:"";
+    position:absolute;
+    width:700px;
+    height:700px;
+    right:-300px;
+    top:-300px;
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+    circle,
+    rgba(255,215,0,.15),
+    transparent 70%);
+
+    filter:blur(40px);
+}
+
+.inspiration-board::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+    rgba(255,255,255,.03) 1px,
+    transparent 1px),
+    linear-gradient(
+    90deg,
+    rgba(255,255,255,.03) 1px,
+    transparent 1px);
+
+    background-size:50px 50px;
+
+    pointer-events:none;
+}
+
+.inspire-heading{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:72px;
+    font-weight:700;
+    margin:0;
+    color:#fff;
+    position:relative;
+    z-index:2;
+}
+
+.inspire-heading span{
+    background:linear-gradient(
+    90deg,
+    #FFD700,
+    #FFA500);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.inspire-sub{
+    max-width:760px;
+    color:#9b9b9b;
+    line-height:1.9;
+    margin:20px 0 50px;
+    position:relative;
+    z-index:2;
+}
+
+.inspiration-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    position:relative;
+    z-index:2;
+}
+
+.inspire-card{
+    position:relative;
+
+    min-height:130px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    border-radius:26px;
+
+    backdrop-filter:blur(20px);
+
+    background:
+    linear-gradient(
+    180deg,
+    rgba(255,255,255,.08),
+    rgba(255,255,255,.02));
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:#fff;
+
+    font-size:22px;
+    font-weight:700;
+    font-family:'Space Grotesk',sans-serif;
+
+    transform-style:preserve-3d;
+
+    transition:.45s ease;
+}
+
+.inspire-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    border-radius:26px;
+
+    background:
+    linear-gradient(
+    135deg,
+    rgba(255,215,0,.15),
+    rgba(255,140,0,.05));
+
+    opacity:0;
+
+    transition:.45s;
+}
+
+.inspire-card:hover{
+    transform:
+    rotateX(10deg)
+    rotateY(-10deg)
+    translateY(-12px)
+    scale(1.04);
+
+    border-color:
+    rgba(255,215,0,.3);
+
+    box-shadow:
+    0 20px 50px rgba(255,215,0,.12),
+    0 0 50px rgba(255,215,0,.08);
+}
+
+.inspire-card:hover::before{
+    opacity:1;
+}
+
+.vision-line{
+    margin-top:45px;
+
+    text-align:center;
+
+    color:#d8d8d8;
+
+    font-size:16px;
+
+    letter-spacing:.18em;
+
+    text-transform:uppercase;
+
+    position:relative;
+    z-index:2;
+}
+
+.gold-line{
+    width:180px;
+    height:3px;
+    margin:35px auto;
+
+    background:
+    linear-gradient(
+    90deg,
+    transparent,
+    #FFD700,
+    transparent);
+
+    box-shadow:
+    0 0 25px rgba(255,215,0,.5);
+}
+
+@media(max-width:768px){
+
+    .inspiration-board{
+        padding:40px 25px;
+    }
+
+    .inspire-heading{
+        font-size:48px;
+    }
+
+}
 .nexora-subtitle{
   color:#00ffff;
   font-weight:600;
@@ -544,23 +762,58 @@ box-shadow:0 0 25px rgba(0,255,255,.35)!important;
     <div class="stat"><div class="stat-num">0</div><div class="stat-label">Companies interested</div></div>
     <div class="stat"><div class="stat-num">1k+</div><div class="stat-label">Followers</div></div>
   </div>
+<div class="section">
 
-  <div class="section">
-    <div class="section-label">INSPIRED BY</div>
-    <div class="empty"> 1.⭕ Google
-2.🟥🟩
-   🟦🟨 Microsoft
-3.I̶B̶M̶  IBM
-4.∞ Meta
-5.SPACEX
-6.👁️‍🗨️ NVIDIA
-7.🌀 OpenAI
-8.⫷A⫸ Anthropic
-9.◉ wipro
-10. ⌣   Amazon
-11.T  TESLA
-12.ORACLE </div>
-  </div>
+    <div class="inspiration-board">
+
+        <h2 class="inspire-heading">
+            Inspired <span>By</span>
+        </h2>
+
+        <p class="inspire-sub">
+            Learning from the world's most influential technology,
+            AI, research and innovation companies.
+        </p>
+
+        <div class="inspiration-grid">
+
+            <div class="inspire-card">⭕ Google</div>
+
+            <div class="inspire-card">
+                🟥🟩🟦🟨 Microsoft
+            </div>
+
+            <div class="inspire-card">IBM</div>
+
+            <div class="inspire-card">∞ Meta</div>
+
+            <div class="inspire-card">🚀 SpaceX</div>
+
+            <div class="inspire-card">👁 NVIDIA</div>
+
+            <div class="inspire-card">🌀 OpenAI</div>
+
+            <div class="inspire-card">⫷A⫸ Anthropic</div>
+
+            <div class="inspire-card">◉ Wipro</div>
+
+            <div class="inspire-card">⌣ Amazon</div>
+
+            <div class="inspire-card">T Tesla</div>
+
+            <div class="inspire-card">Oracle</div>
+
+        </div>
+
+        <div class="gold-line"></div>
+
+        <div class="vision-line">
+            BUILDING FOR THE FUTURE WHILE LEARNING FROM THE BEST
+        </div>
+
+    </div>
+
+</div>
   <div class="section">
     <div class="section-label">working in</div>
     <div class="empty">not added yet</div>
