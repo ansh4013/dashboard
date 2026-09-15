@@ -156,7 +156,156 @@
   color:inherit;
   cursor:pointer;
 }
+.founder-hub{
+    position:relative;
+    overflow:hidden;
+    padding:55px;
+    border-radius:30px;
+    background:
+    linear-gradient(
+        180deg,
+        rgba(18,20,30,.95),
+        rgba(8,10,18,.98)
+    );
+    border:1px solid rgba(255,255,255,.06);
+}
 
+.founder-hub::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    top:-250px;
+    right:-250px;
+    border-radius:50%;
+    background:
+    radial-gradient(
+        circle,
+        rgba(0,180,255,.12),
+        transparent 70%
+    );
+    pointer-events:none;
+}
+
+.founder-hub::after{
+    content:"";
+    position:absolute;
+    width:400px;
+    height:400px;
+    bottom:-220px;
+    left:-220px;
+    border-radius:50%;
+    background:
+    radial-gradient(
+        circle,
+        rgba(124,92,255,.08),
+        transparent 70%
+    );
+    pointer-events:none;
+}
+
+.founder-badge{
+    display:inline-block;
+    padding:10px 18px;
+    border-radius:999px;
+    background:rgba(0,180,255,.08);
+    border:1px solid rgba(0,180,255,.15);
+    color:#00B4FF;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.15em;
+}
+
+.founder-title{
+    margin:22px 0;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(42px,7vw,72px);
+    line-height:1;
+    color:#fff;
+}
+
+.founder-title span{
+    color:#00B4FF;
+}
+
+.founder-intro{
+    max-width:850px;
+    color:#9FA8C7;
+    font-size:15px;
+    line-height:2;
+}
+
+.founder-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:22px;
+    margin-top:40px;
+}
+
+.founder-role{
+    background:rgba(255,255,255,.02);
+    border:1px solid rgba(255,255,255,.05);
+    border-radius:22px;
+    padding:28px;
+    transition:.4s ease;
+}
+
+.founder-role:hover{
+    transform:translateY(-10px);
+    border-color:rgba(0,180,255,.25);
+    box-shadow:0 20px 50px rgba(0,180,255,.10);
+}
+
+.founder-icon{
+    width:65px;
+    height:65px;
+    border-radius:18px;
+    background:rgba(0,180,255,.08);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    margin-bottom:18px;
+}
+
+.founder-role h3{
+    margin:0 0 12px;
+    color:#fff;
+    font-size:20px;
+    font-family:'Space Grotesk',sans-serif;
+}
+
+.founder-role p{
+    margin:0;
+    color:#9FA8C7;
+    line-height:1.8;
+}
+
+.founder-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:42px;
+    padding:16px 34px;
+    text-decoration:none;
+    border-radius:14px;
+    background:
+    linear-gradient(
+        135deg,
+        #00B4FF,
+        #0066FF
+    );
+    color:#fff;
+    font-weight:700;
+    letter-spacing:.08em;
+    transition:.35s ease;
+}
+
+.founder-btn:hover{
+    transform:translateY(-4px);
+    box-shadow:
+    0 15px 40px rgba(0,180,255,.35);
+}
 .watch-btn{
   margin-top:18px;
   display:inline-block;
@@ -472,17 +621,6 @@ box-shadow:0 0 25px rgba(0,255,255,.35)!important;
 
   </div>
 </div>
- 
-
-  <div class="section">
-    <div class="section-label">LOOKING FOR CO-FOUNDERS WHO ARE AIMING AT(myself as an entrepreneur)</div>
-    <div class="cofounder-intro">Aiming to build something on the scale of Google, Microsoft, Amazon and IBM — not as an employee, but as a founder putting real ownership behind it. If you'd rather build a tech giant than work inside one, get in touch.(are you aiming at)</div>
-    <div class="cofounder-grid">
-      <div class="cofounder-card"><div class="cofounder-name">Business and management</div><div class="cofounder-degrees">BTech + MBA<br>BTech + MIM</div></div>
-      <div class="cofounder-card"><div class="cofounder-name">Research field</div><div class="cofounder-degrees">BTech + MTech</div></div>
-      <div class="cofounder-card"><div class="cofounder-name">Tech field</div><div class="cofounder-degrees">BTech + MS</div></div>
-      <div class="cofounder-card"><div class="cofounder-name">Biotech engineers</div><div class="cofounder-degrees">BTech in Biotechnology</div></div>
-    </div>
     <a class="cta-link" href="#contactSection">Contact now</a>
   </div>
 <div class="section">
@@ -522,6 +660,85 @@ box-shadow:0 0 25px rgba(0,255,255,.35)!important;
       </span>
 
   </a>
+</div>
+<div class="section">
+
+    <div class="founder-hub">
+
+        <div class="founder-badge">
+            BUILDING THE FUTURE
+        </div>
+
+        <h2 class="founder-title">
+            Looking For <span>Co-Founders</span>
+        </h2>
+
+        <p class="founder-intro">
+            Aiming to build something on the scale of Google,
+            Microsoft, Amazon and IBM — not as an employee,
+            but as a founder putting real ownership behind it.
+
+            <br><br>
+
+            If you'd rather build a tech giant than work inside one,
+            get in touch.
+
+            <br><br>
+
+            <strong>Are you aiming at the same vision?</strong>
+        </p>
+
+        <div class="founder-grid">
+
+            <div class="founder-role">
+                <div class="founder-icon">📈</div>
+                <h3>Business & Management</h3>
+                <p>BTech + MBA<br>BTech + MIM</p>
+            </div>
+
+            <div class="founder-role">
+                <div class="founder-icon">🔬</div>
+                <h3>Research Field</h3>
+                <p>BTech + MTech</p>
+            </div>
+
+            <div class="founder-role">
+                <div class="founder-icon">💻</div>
+                <h3>Tech Field</h3>
+                <p>BTech + MS</p>
+            </div>
+
+            <div class="founder-role">
+                <div class="founder-icon">🧬</div>
+                <h3>Biotech Engineers</h3>
+                <p>BTech in Biotechnology</p>
+            </div>
+
+            <div class="founder-role">
+                <div class="founder-icon">💼</div>
+                <h3>Commerce Field</h3>
+                <p>B.Com + M.Com<br>BBA + BMS</p>
+            </div>
+
+            <div class="founder-role">
+                <div class="founder-icon">🌍</div>
+                <h3>Other Fields</h3>
+                <p>
+                    Law, Design, Finance,
+                    Marketing, Economics,
+                    Psychology and other
+                    exceptional domains.
+                </p>
+            </div>
+
+        </div>
+
+        <a href="#contactSection" class="founder-btn">
+            CONTACT NOW
+        </a>
+
+    </div>
+
 </div>
   <div class="section" id="contactSection">
     <div class="section-label">CONTACT</div>
