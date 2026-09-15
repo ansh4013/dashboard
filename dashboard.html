@@ -47,6 +47,23 @@
     pointer-events:none; z-index:0; filter:blur(40px);
     transition:transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
+.entrepreneur-card{
+  display:block;
+  text-decoration:none;
+  color:inherit;
+  cursor:pointer;
+}
+
+.watch-btn{
+  margin-top:18px;
+  display:inline-block;
+  padding:12px 24px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#00ffff,#7c3aed);
+  color:#fff;
+  font-weight:700;
+  box-shadow:0 0 25px rgba(0,255,255,.35);
+}
 
   .wrap{ max-width:920px; margin:0 auto; padding:40px 24px 100px; position:relative; z-index:1; }
 
@@ -318,13 +335,44 @@ box-shadow:0 0 25px rgba(0,255,255,.35)!important;
     </div>
     <a class="cta-link" href="#contactSection">Contact now</a>
   </div>
-  <div class="section">
-    <div class="section-label">KYA KABHI SOCHA HAI? <br>Who is an entrepreneur?</div>
-    <div class="empty">
-WATCH THIS INSPIRING VIDEO WITH VOLUMES FULL<br> href="https://youtu.be/wo9yGrd9y9I?si=-IxnKMMnpLGV-qWx">
+<div class="section">
+  <div class="section-label">
+    KYA KABHI SOCHA HAI? <br>
+    WHO IS AN ENTREPRENEUR?
   </div>
-</div>
 
+  <a href="https://youtu.be/wo9yGrd9y9I?si=-IxnKMMnpLGV-qWx"
+     target="_blank"
+     class="card entrepreneur-card">
+
+      <div class="card-name">
+        🚀 WHO IS AN ENTREPRENEUR?
+      </div>
+
+      <div class="card-desc">
+        An entrepreneur is a person who identifies opportunities,
+        solves problems, takes risks, and creates value through
+        innovation and leadership.
+        <br><br>
+
+        Google, Microsoft, Amazon, Tesla, NVIDIA, OpenAI,
+        Meta and SpaceX were all started by entrepreneurs who
+        believed they could build something extraordinary.
+        <br><br>
+
+        Entrepreneurs don't wait for the future —
+        they build it.
+        <br><br>
+
+        🔊 Click anywhere on this card and watch this inspiring video.
+      </div>
+
+      <span class="watch-btn">
+        ▶ WATCH VIDEO
+      </span>
+
+  </a>
+</div>
   <div class="section" id="contactSection">
     <div class="section-label">CONTACT</div>
     <div class="contact-card">
