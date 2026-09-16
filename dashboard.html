@@ -927,6 +927,269 @@
     color:#9FA8C7;
     line-height:1.8;
 }
+.starlink-board{
+    position:relative;
+    overflow:hidden;
+    padding:70px 55px;
+    border-radius:38px;
+
+    background:
+    radial-gradient(circle at top left,
+    rgba(0,170,255,.10),
+    transparent 35%),
+
+    radial-gradient(circle at bottom right,
+    rgba(120,90,255,.10),
+    transparent 45%),
+
+    linear-gradient(
+    145deg,
+    #020611,
+    #07101f,
+    #020611);
+
+    border:1px solid rgba(120,180,255,.12);
+
+    box-shadow:
+    0 30px 120px rgba(0,0,0,.7);
+
+    backdrop-filter:blur(30px);
+}
+
+.starlink-board::before{
+    content:"";
+    position:absolute;
+    width:900px;
+    height:900px;
+    left:-450px;
+    top:-450px;
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+    circle,
+    rgba(0,170,255,.10),
+    transparent 70%);
+
+    filter:blur(80px);
+}
+
+.starlink-board::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(
+    rgba(255,255,255,.15) 1px,
+    transparent 1px);
+
+    background-size:40px 40px;
+
+    opacity:.12;
+
+    pointer-events:none;
+}
+
+.starlink-title{
+    position:relative;
+    z-index:2;
+    margin:0;
+
+    font-family:'Space Grotesk',sans-serif;
+    font-size:72px;
+    font-weight:700;
+
+    background:
+    linear-gradient(
+    90deg,
+    #ffffff,
+    #67e8ff,
+    #7c5cff);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.starlink-sub{
+    position:relative;
+    z-index:2;
+
+    max-width:760px;
+    margin:18px 0 50px;
+
+    color:#9fb0d0;
+    line-height:1.9;
+    font-size:15px;
+}
+
+.starlink-card{
+    position:relative;
+    z-index:2;
+
+    overflow:hidden;
+    padding:40px;
+    border-radius:30px;
+
+    background:
+    linear-gradient(
+    180deg,
+    rgba(255,255,255,.06),
+    rgba(255,255,255,.02));
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.45s ease;
+}
+
+.starlink-card:hover{
+    transform:translateY(-10px);
+
+    border-color:
+    rgba(0,170,255,.25);
+
+    box-shadow:
+    0 25px 80px rgba(0,170,255,.15);
+}
+
+.orbit{
+    position:absolute;
+    width:450px;
+    height:450px;
+    right:-140px;
+    top:-140px;
+
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.05);
+}
+
+.orbit::before{
+    content:"🛰";
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:38px;
+}
+
+.starlink-badge{
+    display:inline-block;
+    padding:8px 18px;
+    border-radius:100px;
+
+    background:
+    rgba(0,170,255,.12);
+
+    border:
+    1px solid rgba(0,170,255,.25);
+
+    color:#67e8ff;
+
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.18em;
+}
+
+.starlink-name{
+    margin:20px 0 10px;
+
+    font-family:'Space Grotesk',sans-serif;
+    font-size:42px;
+    font-weight:700;
+
+    color:#fff;
+}
+
+.starlink-credit{
+    color:#67e8ff;
+
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.18em;
+
+    text-transform:uppercase;
+    margin-bottom:18px;
+}
+
+.starlink-desc{
+    color:#aab7d3;
+    line-height:1.9;
+    max-width:720px;
+    font-size:15px;
+}
+
+.starlink-btns{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+.starlink-btn{
+    text-decoration:none;
+    padding:15px 28px;
+    border-radius:14px;
+    font-weight:700;
+    transition:.35s ease;
+}
+
+.starlink-btn.primary{
+    background:
+    linear-gradient(
+    135deg,
+    #00c2ff,
+    #7c5cff);
+
+    color:#fff;
+
+    box-shadow:
+    0 0 30px rgba(0,170,255,.25);
+}
+
+.starlink-btn:hover{
+    transform:translateY(-4px);
+}
+
+.starlink-tags{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:28px;
+}
+
+.starlink-tag{
+    padding:10px 18px;
+    border-radius:100px;
+
+    background:
+    rgba(255,255,255,.05);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    color:#dce7ff;
+    font-size:13px;
+}
+
+@media(max-width:768px){
+
+.starlink-board{
+    padding:40px 25px;
+}
+
+.starlink-title{
+    font-size:48px;
+}
+
+.starlink-name{
+    font-size:30px;
+}
+
+.orbit{
+    display:none;
+}
+
+}
 
 .founder-btn{
     display:inline-flex;
@@ -1399,6 +1662,68 @@ box-shadow:0 0 25px rgba(0,255,255,.35)!important;
         </div>
 
     </div>
+
+</div>
+
+</div>
+<div class="section">
+
+<div class="starlink-board">
+
+<h2 class="starlink-title">
+Starlink
+</h2>
+
+<p class="starlink-sub">
+Exploring the world's largest satellite internet
+constellation and the future of global connectivity
+through SpaceX's Starlink network.
+</p>
+
+<div class="starlink-card">
+
+<div class="orbit"></div>
+
+<div class="starlink-badge">
+STARLINK NETWORK
+</div>
+
+<div class="starlink-name">
+Starlink Satellite Constellation
+</div>
+
+<div class="starlink-credit">
+SPACEX • LOW EARTH ORBIT NETWORK
+</div>
+
+<div class="starlink-desc">
+Starlink is a global satellite internet constellation
+developed by SpaceX. Thousands of satellites orbit
+Earth in Low Earth Orbit (LEO), providing high-speed
+internet connectivity across remote and underserved
+regions worldwide while building one of the largest
+space infrastructures ever created.
+</div>
+
+<div class="starlink-btns">
+
+<a href="https://satellitemap.space/"
+target="_blank"
+class="starlink-btn primary">
+🛰 TRACK STARLINK
+</a>
+
+</div>
+
+<div class="starlink-tags">
+<span class="starlink-tag">Starlink</span>
+<span class="starlink-tag">SpaceX</span>
+<span class="starlink-tag">Satellite Internet</span>
+<span class="starlink-tag">LEO Network</span>
+<span class="starlink-tag">Global Connectivity</span>
+</div>
+
+</div>
 
 </div>
 
