@@ -272,6 +272,212 @@
     position:relative;
     z-index:2;
 }
+.discipline-card{
+    position:relative;
+    overflow:hidden;
+
+    padding:32px;
+    margin-top:24px;
+
+    border-radius:28px;
+
+    background:
+    linear-gradient(
+    145deg,
+    #07070b,
+    #10101a,
+    #0b0b12);
+
+    border:1px solid rgba(255,255,255,.06);
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.45);
+}
+
+.discipline-glow-1{
+    position:absolute;
+    top:-180px;
+    right:-180px;
+
+    width:380px;
+    height:380px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+    circle,
+    rgba(168,85,247,.18),
+    transparent 70%);
+
+    filter:blur(20px);
+}
+
+.discipline-glow-2{
+    position:absolute;
+    bottom:-150px;
+    left:-150px;
+
+    width:320px;
+    height:320px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+    circle,
+    rgba(236,72,153,.12),
+    transparent 70%);
+
+    filter:blur(20px);
+}
+
+.discipline-badge{
+    display:inline-block;
+
+    padding:8px 14px;
+
+    border-radius:50px;
+
+    background:
+    rgba(168,85,247,.15);
+
+    color:#d8b4fe;
+
+    border:
+    1px solid rgba(168,85,247,.25);
+
+    font-size:12px;
+    font-weight:600;
+
+    position:relative;
+    z-index:2;
+}
+
+.discipline-title{
+    margin:18px 0 10px;
+
+    font-family:'Space Grotesk',sans-serif;
+    font-size:42px;
+    line-height:1;
+
+    background:
+    linear-gradient(
+    90deg,
+    #ffffff,
+    #d8b4fe,
+    #93c5fd);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    position:relative;
+    z-index:2;
+}
+
+.discipline-tagline{
+    color:#c4b5fd;
+
+    font-weight:600;
+
+    letter-spacing:.15em;
+
+    margin-bottom:18px;
+
+    text-transform:uppercase;
+
+    font-size:12px;
+
+    position:relative;
+    z-index:2;
+}
+
+.discipline-description{
+    color:#b6b8c7;
+
+    max-width:700px;
+
+    line-height:1.9;
+
+    font-size:15px;
+
+    position:relative;
+    z-index:2;
+}
+
+.discipline-actions{
+    margin-top:24px;
+    position:relative;
+    z-index:2;
+}
+
+.discipline-btn{
+    display:inline-block;
+
+    text-decoration:none;
+
+    padding:14px 28px;
+
+    border-radius:14px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #a855f7,
+    #ec4899,
+    #60a5fa);
+
+    color:white;
+
+    font-weight:700;
+
+    box-shadow:
+    0 10px 35px rgba(168,85,247,.35);
+
+    transition:.35s ease;
+}
+
+.discipline-btn:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 20px 45px rgba(168,85,247,.45);
+}
+
+.discipline-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+
+    margin-top:28px;
+
+    position:relative;
+    z-index:2;
+}
+
+.discipline-chip{
+    padding:10px 16px;
+
+    border-radius:50px;
+
+    background:
+    rgba(255,255,255,.05);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    color:#d8d8e8;
+
+    font-size:13px;
+
+    transition:.3s ease;
+}
+
+.discipline-chip:hover{
+    border-color:#a855f7;
+
+    transform:translateY(-2px);
+}
 
 .gold-line{
     width:180px;
@@ -871,7 +1077,50 @@ box-shadow:0 0 25px rgba(0,255,255,.35)!important;
       <span class="chip">Future Technology</span>
       <span class="chip">Next Generation AI</span>
     </div>
+<div class="discipline-card">
 
+    <div class="discipline-glow-1"></div>
+    <div class="discipline-glow-2"></div>
+
+    <span class="discipline-badge">
+        LIVE PROJECT
+    </span>
+
+    <h2 class="discipline-title">
+        DISCIPLINE
+    </h2>
+
+    <div class="discipline-tagline">
+        SELF GROWTH • PRODUCTIVITY • SUCCESS
+    </div>
+
+    <p class="discipline-description">
+        Discipline is the silent force behind every achievement.
+        A platform dedicated to consistency, self-improvement,
+        focus and the habits that shape extraordinary futures.
+    </p>
+
+    <div class="discipline-actions">
+
+        <a href="https://ansh4013.github.io/dashboard/discipline.html"
+           target="_blank"
+           class="discipline-btn">
+           ✨ VISIT DISCIPLINE
+        </a>
+
+    </div>
+
+    <div class="discipline-chips">
+
+        <span class="discipline-chip">Consistency</span>
+        <span class="discipline-chip">Focus</span>
+        <span class="discipline-chip">Productivity</span>
+        <span class="discipline-chip">Growth Mindset</span>
+        <span class="discipline-chip">Success Habits</span>
+
+    </div>
+
+</div>
   </div>
 </div>
     <a class="cta-link" href="#contactSection">Contact now</a>
