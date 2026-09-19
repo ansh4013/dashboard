@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard Access</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,Arial,sans-serif;
+}
+
+body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+background:
+radial-gradient(circle at top left,#00ffff22,transparent 30%),
+radial-gradient(circle at bottom right,#8b5cf622,transparent 35%),
+#050816;
+}
+
+.bg{
+position:absolute;
+width:600px;
+height:600px;
+border-radius:50%;
+background:linear-gradient(135deg,#00ffff22,#8b5cf622);
+filter:blur(120px);
+animation:float 8s ease-in-out infinite;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-40px);}
+}
+
+.card{
+position:relative;
+z-index:10;
+width:min(92%,420px);
+padding:35px;
+border-radius:28px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.08);
+box-shadow:
+0 0 40px rgba(0,255,255,.15),
+0 0 80px rgba(139,92,246,.10);
+}
+
+.logo{
+text-align:center;
+font-size:50px;
+margin-bottom:10px;
+}
+
+h2{
+text-align:center;
+font-size:32px;
+margin-bottom:8px;
+background:linear-gradient(90deg,#00ffff,#8b5cf6);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+text-align:center;
+color:#94a3b8;
+margin-bottom:25px;
+font-size:14px;
+}
+
+.input-box{
+margin-bottom:14px;
+}
+
+input{
+width:100%;
+padding:15px;
+border-radius:14px;
+border:1px solid rgba(255,255,255,.08);
+background:rgba(255,255,255,.06);
+color:#fff;
+outline:none;
+transition:.3s;
+}
+
+input::placeholder{
+color:#94a3b8;
+}
+
+input:focus{
+border-color:#00ffff;
+box-shadow:0 0 20px rgba(0,255,255,.25);
+}
+
+button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:14px;
+cursor:pointer;
+font-size:15px;
+font-weight:600;
+color:white;
+background:linear-gradient(135deg,#00ffff,#8b5cf6);
+transition:.3s;
+}
+
+button:hover{
+transform:translateY(-3px);
+box-shadow:0 12px 30px rgba(0,255,255,.3);
+}
+
+.status{
+margin-top:15px;
+text-align:center;
+font-size:13px;
+color:#94a3b8;
+}
+
+.footer{
+margin-top:18px;
+text-align:center;
+font-size:12px;
+color:#64748b;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="card">
+
+<div class="logo">⚡</div>
+
+<h2>DASHBOARD</h2>
+
+<div class="subtitle">
+Secure Access Portal
+</div>
+
+<div class="input-box">
+<input type="text" id="name" placeholder="Full Name">
+</div>
+
+<div class="input-box">
+<input type="email" id="email" placeholder="Email Address">
+</div>
+
+<div class="input-box">
+<input type="tel" id="phone" placeholder="Phone Number">
+</div>
+
+<button onclick="submitForm()" id="submitBtn">
+ENTER DASHBOARD
+</button>
+
+<div class="status" id="status"></div>
+
+<div class="footer">
+Powered by Digital Intelligence
+</div>
+
+</div>
+
+<script type="module">
+import { createClient }
+from "https://esm.sh/@supabase/supabase-js";
+
+const supabase = createClient(
+"https://hbudhkyftxdqlwcdyotq.supabase.co",
+"sb_publishable_xrX2qILCdLyF7fmrlqMGpA_Pv6D7xYG"
+);
+
+window.submitForm = async function(){
+
+const name=document.getElementById("name").value.trim();
+const email=document.getElementById("email").value.trim();
+const phone=document.getElementById("phone").value.trim();
+
+const status=document.getElementById("status");
+const btn=document.getElementById("submitBtn");
+
+if(!name || !email || !phone){
+status.innerText="Please fill all fields";
+return;
+}
+
+btn.disabled=true;
+btn.innerText="PLEASE WAIT...";
+status.innerText="Saving details...";
+
+const { error } = await supabase
+.from("users")
+.insert([
+{
+name:name,
+email:email,
+phone:phone
+}
+]);
+
+if(error){
+status.innerText=error.message;
+btn.disabled=false;
+btn.innerText="ENTER DASHBOARD";
+return;
+}
+
+localStorage.setItem("loggedIn","true");
+localStorage.setItem("userName",name);
+localStorage.setItem("userEmail",email);
+localStorage.setItem("userPhone",phone);
+
+status.innerText="Success! Redirecting...";
+
+setTimeout(()=>{
+window.location.href="dashboard.html";
+},1000);
+
+};
+</script>
+
+</body>
+</html>
