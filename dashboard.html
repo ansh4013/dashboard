@@ -2,10 +2,7 @@
 <html lang="en"> 
 <head>
 <script>
-alert("Checking login...");
-
 if(localStorage.getItem("loggedIn") !== "true"){
-    alert("Redirecting to login");
     window.location.replace("/dashboard/login.html");
 }
 </script>
