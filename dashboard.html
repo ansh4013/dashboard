@@ -2,10 +2,14 @@
 <html lang="en"> 
 <head>
 <script>
-if(localStorage.getItem("loggedIn") !== "true"){
-    window.location.replace("/dashboard/login.html");
-}
-</script>
+<script>  
+alert("Checking login...   click OK");  
+  
+if(localStorage.getItem("loggedIn") !== "true"){  
+    alert("Redirecting to login. Click. OK");  
+    window.location.replace("/dashboard/login.html");  
+}  
+</script>  
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard</title>
