@@ -326,12 +326,10 @@ document.getElementById("name").value="";
 document.getElementById("email").value="";
 document.getElementById("feedback").value="";
 
-setTimeout(()=>{
-
-window.location.href =
-"https://ansh4013.github.io/dashboard/dashboard.html";
-
-},1500);
+setTimeout(() => {
+  status.innerHTML =
+  "✅ Feedback submitted successfully!";
+}, 1500);
 
 }
 catch(err){
