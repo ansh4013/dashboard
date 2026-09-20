@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title> Feedback Portal</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Inter,Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    position:relative;
+
+    background:
+    radial-gradient(circle at top left,#00ffff25,transparent 35%),
+    radial-gradient(circle at bottom right,#8b5cf625,transparent 40%),
+    #050816;
+}
+
+.glow{
+    position:absolute;
+    width:650px;
+    height:650px;
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+    135deg,
+    rgba(0,255,255,.18),
+    rgba(139,92,246,.18));
+
+    filter:blur(120px);
+
+    animation:float 8s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-40px);
+    }
+}
+
+.card{
+    position:relative;
+    z-index:2;
+
+    width:min(92%,580px);
+
+    padding:40px;
+
+    border-radius:32px;
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+    0 0 40px rgba(0,255,255,.15),
+    0 0 80px rgba(139,92,246,.10);
+
+    color:white;
+}
+
+.logo{
+    text-align:center;
+    font-size:60px;
+    margin-bottom:10px;
+}
+
+h1{
+    text-align:center;
+    font-size:38px;
+
+    background:
+    linear-gradient(
+    90deg,
+    #00ffff,
+    #8b5cf6);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+    text-align:center;
+    color:#94a3b8;
+    margin-top:10px;
+    margin-bottom:28px;
+    line-height:1.7;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:16px;
+    margin:10px 0;
+
+    border:none;
+    outline:none;
+
+    border-radius:16px;
+
+    background:
+    rgba(255,255,255,.06);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    color:white;
+
+    transition:.3s;
+}
+
+input::placeholder,
+textarea::placeholder{
+    color:#94a3b8;
+}
+
+input:focus,
+textarea:focus{
+    border-color:#00ffff;
+
+    box-shadow:
+    0 0 20px rgba(0,255,255,.25);
+}
+
+textarea{
+    min-height:180px;
+    resize:none;
+}
+
+button{
+    width:100%;
+    padding:16px;
+
+    margin-top:12px;
+
+    border:none;
+    cursor:pointer;
+
+    border-radius:16px;
+
+    color:white;
+    font-size:15px;
+    font-weight:700;
+
+    background:
+    linear-gradient(
+    135deg,
+    #00ffff,
+    #8b5cf6);
+
+    transition:.35s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 12px 30px rgba(0,255,255,.35);
+}
+
+button:disabled{
+    opacity:.7;
+    cursor:not-allowed;
+}
+
+#status{
+    margin-top:18px;
+    text-align:center;
+    font-size:14px;
+    color:#94a3b8;
+}
+
+.footer{
+    text-align:center;
+    margin-top:20px;
+    color:#64748b;
+    font-size:12px;
+}
+
+@media(max-width:600px){
+
+.card{
+    padding:28px;
+}
+
+h1{
+    font-size:28px;
+}
+
+.logo{
+    font-size:46px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="glow"></div>
+
+<div class="card">
+
+<div class="logo">💬</div>
+
+<h1>FEEDBACK</h1>
+
+<div class="subtitle">
+Help us improve your experience.<br>
+Share your thoughts, suggestions and ideas.
+</div>
+
+<input
+type="text"
+id="name"
+placeholder="Your Name">
+
+<input
+type="email"
+id="email"
+placeholder="Your Email Address">
+
+<textarea
+id="feedback"
+placeholder="Write your feedback here..."></textarea>
+
+<button
+id="submitBtn"
+onclick="submitFeedback()">
+SUBMIT FEEDBACK
+</button>
+
+<div id="status"></div>
+
+<div class="footer">
+Powered by Digital Intelligence
+</div>
+
+</div>
+
+<script type="module">
+
+import { createClient }
+from "https://esm.sh/@supabase/supabase-js@2";
+
+const supabase = createClient(
+"https://hbudhkyftxdqlwcdyotq.supabase.co",
+"sb_publishable_xrX2qILCdLyF7fmrlqMGpA_Pv6D7xYG"
+);
+
+window.submitFeedback = async () => {
+
+const name =
+document.getElementById("name").value.trim();
+
+const email =
+document.getElementById("email").value.trim();
+
+const feedback =
+document.getElementById("feedback").value.trim();
+
+const status =
+document.getElementById("status");
+
+const btn =
+document.getElementById("submitBtn");
+
+if(!name || !email || !feedback){
+
+status.innerHTML =
+"⚠️ Please fill all fields";
+
+return;
+}
+
+btn.disabled = true;
+btn.innerHTML = "SAVING...";
+
+status.innerHTML =
+"Connecting to database...";
+
+try{
+
+const { data, error } =
+await supabase
+.from("feedback")
+.insert([
+{
+name:name,
+email:email,
+feedback:feedback
+}
+])
+.select();
+
+if(error){
+throw error;
+}
+
+console.log(data);
+
+status.innerHTML =
+"✅ Feedback submitted successfully!";
+
+document.getElementById("name").value="";
+document.getElementById("email").value="";
+document.getElementById("feedback").value="";
+
+setTimeout(()=>{
+
+window.location.href =
+"https://ansh4013.github.io/dashboard/dashboard.html";
+
+},1500);
+
+}
+catch(err){
+
+console.error(err);
+
+status.innerHTML =
+"❌ " + err.message;
+
+btn.disabled = false;
+btn.innerHTML =
+"SUBMIT FEEDBACK";
+
+}
+
+};
+
+</script>
+
+</body>
+</html>
