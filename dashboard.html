@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en"> 
 <head>
 <script>
@@ -56,7 +56,43 @@ if(localStorage.getItem("loggedIn") !== "true"){
   );
   border-radius:20px;
 }
+.floating-feedback{
+    position:fixed;
+    top:20px;
+    right:20px;
 
+    width:60px;
+    height:60px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    text-decoration:none;
+    font-size:28px;
+
+    color:#fff;
+
+    background:linear-gradient(
+        135deg,
+        #00ffff,
+        #8b5cf6
+    );
+
+    box-shadow:
+        0 0 25px rgba(0,255,255,.5),
+        0 0 50px rgba(139,92,246,.3);
+
+    z-index:9999;
+
+    transition:.3s ease;
+}
+
+.floating-feedback:hover{
+    transform:translateY(-3px) scale(1.05);
+}
 .nexora-glow{
   position:absolute;
   top:-120px;
@@ -1447,6 +1483,9 @@ box-shadow:0 0 25px rgba(0,255,255,.35)!important;
   <div class="hero">
     <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span>Live workspace</div>
     <h1 class="hero-title">Dashboard</h1>
+<a href="feedback.html" class="floating-feedback">
+    💬 FEEDBACK 
+</a>
     <div class="hero-sub">Every site I've shipped, my traction, and the people I'm looking to build with — in one place.</div>
     <div class="hero-rule"></div>
   </div>
