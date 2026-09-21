@@ -1883,7 +1883,15 @@ class="starlink-btn primary">
             </div>
 
         </div>
+<button onclick="logout()">Test Logout</button>
 
+<script>
+function logout(){
+    localStorage.removeItem("loggedIn");
+    alert("Login removed");
+    location.reload();
+}
+</script>
         <a href="#contactSection" class="founder-btn">
             CONTACT NOW
         </a>
