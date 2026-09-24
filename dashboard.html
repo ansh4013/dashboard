@@ -1231,7 +1231,238 @@ if(localStorage.getItem("loggedIn") !== "true"){   window.location.replace("http
 }
 
 }
+.analysis-board{
+    position:relative;
+    overflow:hidden;
+    padding:70px 55px;
+    border-radius:38px;
 
+    background:
+    radial-gradient(circle at top right,
+    rgba(255,0,128,.10),
+    transparent 35%),
+
+    radial-gradient(circle at bottom left,
+    rgba(0,255,255,.08),
+    transparent 45%),
+
+    linear-gradient(
+    145deg,
+    #050510,
+    #0d1024,
+    #050510);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+    0 30px 120px rgba(0,0,0,.7);
+
+    backdrop-filter:blur(30px);
+}
+
+.analysis-board::before{
+    content:"";
+    position:absolute;
+
+    width:700px;
+    height:700px;
+
+    right:-350px;
+    top:-350px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+    circle,
+    rgba(255,0,128,.12),
+    transparent 70%);
+
+    filter:blur(80px);
+}
+
+.analysis-title{
+    position:relative;
+    z-index:2;
+
+    margin:0;
+
+    font-size:72px;
+    font-weight:700;
+    font-family:'Space Grotesk',sans-serif;
+
+    background:
+    linear-gradient(
+    90deg,
+    #ffffff,
+    #ff4da6,
+    #00ffff);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.analysis-sub{
+    position:relative;
+    z-index:2;
+
+    max-width:760px;
+
+    margin:18px 0 50px;
+
+    color:#a8b4d8;
+    line-height:1.9;
+}
+
+.analysis-card{
+    position:relative;
+    z-index:2;
+
+    padding:40px;
+
+    border-radius:30px;
+
+    background:
+    linear-gradient(
+    180deg,
+    rgba(255,255,255,.06),
+    rgba(255,255,255,.02));
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.45s;
+}
+
+.analysis-card:hover{
+    transform:translateY(-10px);
+
+    box-shadow:
+    0 25px 80px rgba(255,0,128,.15);
+
+    border-color:
+    rgba(255,0,128,.25);
+}
+
+.analysis-badge{
+    display:inline-block;
+
+    padding:8px 18px;
+
+    border-radius:100px;
+
+    background:
+    rgba(255,0,128,.12);
+
+    border:
+    1px solid rgba(255,0,128,.25);
+
+    color:#ff6bb3;
+
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.18em;
+}
+
+.analysis-name{
+    margin:20px 0 10px;
+
+    font-size:42px;
+    font-weight:700;
+
+    color:#fff;
+
+    font-family:'Space Grotesk',sans-serif;
+}
+
+.analysis-credit{
+    color:#00ffff;
+
+    font-size:13px;
+    font-weight:700;
+
+    letter-spacing:.18em;
+
+    text-transform:uppercase;
+
+    margin-bottom:18px;
+}
+
+.analysis-desc{
+    color:#b7c2df;
+
+    line-height:1.9;
+
+    max-width:720px;
+}
+
+.analysis-btns{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+
+    margin-top:30px;
+}
+
+.analysis-btn.primary{
+    text-decoration:none;
+
+    padding:15px 28px;
+
+    border-radius:14px;
+
+    font-weight:700;
+
+    color:#fff;
+
+    background:
+    linear-gradient(
+    135deg,
+    #ff4da6,
+    #00ffff);
+
+    box-shadow:
+    0 0 30px rgba(255,0,128,.25);
+}
+
+.analysis-tags{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+
+    margin-top:28px;
+}
+
+.analysis-tag{
+    padding:10px 18px;
+
+    border-radius:100px;
+
+    background:
+    rgba(255,255,255,.05);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    color:#dce7ff;
+
+    font-size:13px;
+}
+
+@media(max-width:768px){
+
+.analysis-board{
+padding:40px 25px;
+}
+
+.analysis-title{
+font-size:48px;
+}
+
+.analysis-name{
+font-size:30px;
+}
+
+}
 .founder-btn{
     display:inline-flex;
     align-items:center;
@@ -1498,6 +1729,65 @@ box-shadow:0 0 25px rgba(0,255,255,.35)!important;
     <div class="stat"><div class="stat-num">0</div><div class="stat-label">Companies interested</div></div>
     <div class="stat"><div class="stat-num">1k+</div><div class="stat-label">Followers</div></div>
   </div>
+<div class="section">
+
+<div class="analysis-board">
+
+<h2 class="analysis-title">
+Analysis Dashboard
+</h2>
+
+<p class="analysis-sub">
+A private analytics workspace built for monitoring,
+visualizing and exploring data through an interactive
+password-protected environment.
+</p>
+
+<div class="analysis-card">
+
+<div class="analysis-badge">
+PRIVATE ACCESS
+</div>
+
+<div class="analysis-name">
+Advanced Analysis Platform
+</div>
+
+<div class="analysis-credit">
+SECURE • PASSWORD PROTECTED
+</div>
+
+<div class="analysis-desc">
+A dedicated intelligence and analytics dashboard
+designed for secure access, data exploration,
+performance monitoring and advanced visualization.
+Built to organize information into a streamlined,
+professional workspace.
+</div>
+
+<div class="analysis-btns">
+
+<a href="https://ansh4013.github.io/dashboard/analysis-dashboard-password-protected.html"
+target="_blank"
+class="analysis-btn primary">
+📊 OPEN DASHBOARD
+</a>
+
+</div>
+
+<div class="analysis-tags">
+<span class="analysis-tag">Analytics</span>
+<span class="analysis-tag">Visualization</span>
+<span class="analysis-tag">Private Access</span>
+<span class="analysis-tag">Data Intelligence</span>
+<span class="analysis-tag">Dashboard</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
 <div class="section">
 
     <div class="inspiration-board">
