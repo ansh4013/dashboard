@@ -223,11 +223,11 @@ h1{
 
 <div class="logo">💬</div>
 
-<h1>FEEDBACK</h1>
+<h1>HELP DESK</h1>
 
 <div class="subtitle">
-Help us improve your experience.<br>
-Share your thoughts, suggestions and ideas.
+submit your hindrances and help us reach you<br>
+Share your Problems.
 </div>
 
 <input
@@ -242,12 +242,12 @@ placeholder="Your Email Address">
 
 <textarea
 id="feedback"
-placeholder="Write your feedback here..."></textarea>
+placeholder="Write your problem here..."></textarea>
 
 <button
 id="submitBtn"
 onclick="submitFeedback()">
-SUBMIT FEEDBACK
+SUBMIT PROBLEM 
 </button>
 
 <div id="status"></div>
@@ -320,7 +320,7 @@ throw error;
 console.log(data);
 
 status.innerHTML =
-"✅ Feedback submitted successfully!";
+"✅ problem submitted successfully!";
 
 document.getElementById("name").value="";
 document.getElementById("email").value="";
@@ -328,7 +328,7 @@ document.getElementById("feedback").value="";
 
 setTimeout(() => {
   status.innerHTML =
-  "✅ Feedback submitted successfully!";
+  "✅ problem submitted successfully!";
 }, 1500);
 
 }
@@ -341,7 +341,7 @@ status.innerHTML =
 
 btn.disabled = false;
 btn.innerHTML =
-"SUBMIT FEEDBACK";
+"SUBMIT PROBLEM";
 
 }
 
