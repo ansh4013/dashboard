@@ -584,7 +584,453 @@ if(localStorage.getItem("loggedIn") !== "true"){   window.location.replace("http
   box-shadow:0 0 25px rgba(0,255,255,.35);
   transition:.3s;
 }
+/* ==========================
+   ULTRA PREMIUM CHANNEL UI
+========================== */
 
+.channel-board{
+    position:relative;
+    overflow:hidden;
+    padding:90px 70px;
+    border-radius:42px;
+
+    background:
+    radial-gradient(circle at top right,
+    rgba(37,211,102,.15),
+    transparent 30%),
+
+    radial-gradient(circle at bottom left,
+    rgba(0,255,200,.12),
+    transparent 35%),
+
+    radial-gradient(circle at center,
+    rgba(124,92,255,.10),
+    transparent 50%),
+
+    linear-gradient(
+    145deg,
+    #020503,
+    #07120d,
+    #030705);
+
+    border:1px solid rgba(255,255,255,.06);
+
+    box-shadow:
+    0 50px 150px rgba(0,0,0,.75);
+
+    isolation:isolate;
+}
+
+/* Animated background particles */
+
+.channel-particles{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.channel-particles span{
+    position:absolute;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:#25D366;
+
+    box-shadow:
+    0 0 12px #25D366,
+    0 0 24px #25D366;
+
+    animation:particleFloat linear infinite;
+}
+
+.channel-particles span:nth-child(1){
+left:8%; top:100%; animation-duration:12s;
+}
+
+.channel-particles span:nth-child(2){
+left:18%; top:100%; animation-duration:15s;
+}
+
+.channel-particles span:nth-child(3){
+left:35%; top:100%; animation-duration:11s;
+}
+
+.channel-particles span:nth-child(4){
+left:55%; top:100%; animation-duration:14s;
+}
+
+.channel-particles span:nth-child(5){
+left:72%; top:100%; animation-duration:18s;
+}
+
+.channel-particles span:nth-child(6){
+left:88%; top:100%; animation-duration:13s;
+}
+
+@keyframes particleFloat{
+from{
+transform:translateY(0);
+opacity:0;
+}
+20%{
+opacity:1;
+}
+to{
+transform:translateY(-110vh);
+opacity:0;
+}
+}
+
+/* Floating Neon Orb */
+
+.channel-orb{
+    position:absolute;
+    width:320px;
+    height:320px;
+    right:-100px;
+    top:-100px;
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+    circle,
+    rgba(37,211,102,.45),
+    rgba(37,211,102,.10),
+    transparent);
+
+    filter:blur(10px);
+
+    animation:orbFloat 7s ease-in-out infinite;
+}
+
+@keyframes orbFloat{
+0%,100%{
+transform:translateY(0px);
+}
+50%{
+transform:translateY(30px);
+}
+}
+
+/* Rotating Rings */
+
+.channel-ring{
+    position:absolute;
+
+    width:420px;
+    height:420px;
+
+    right:-150px;
+    top:-150px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(37,211,102,.12);
+
+    animation:spin 20s linear infinite;
+}
+
+.channel-ring::before{
+    content:"";
+    position:absolute;
+    inset:35px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(0,255,180,.12);
+}
+
+.channel-ring::after{
+    content:"";
+    position:absolute;
+    inset:75px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(124,92,255,.12);
+}
+
+@keyframes spin{
+from{
+transform:rotate(0deg);
+}
+to{
+transform:rotate(360deg);
+}
+}
+
+/* Header */
+
+.channel-title{
+    position:relative;
+    z-index:2;
+
+    font-family:'Space Grotesk',sans-serif;
+    font-size:78px;
+    font-weight:800;
+    margin:0;
+
+    background:
+    linear-gradient(
+    90deg,
+    #ffffff,
+    #25D366,
+    #00ffd5);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.channel-sub{
+    position:relative;
+    z-index:2;
+
+    max-width:780px;
+    color:#9dd4bc;
+    line-height:1.9;
+    margin:20px 0 60px;
+}
+
+/* Card */
+
+.channel-card{
+    position:relative;
+    z-index:2;
+
+    overflow:hidden;
+
+    padding:55px;
+
+    border-radius:36px;
+
+    backdrop-filter:blur(35px);
+
+    background:
+    linear-gradient(
+    145deg,
+    rgba(255,255,255,.07),
+    rgba(255,255,255,.02));
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.5s;
+}
+
+.channel-card:hover{
+    transform:
+    translateY(-12px)
+    scale(1.02);
+
+    box-shadow:
+    0 0 80px rgba(37,211,102,.15),
+    0 0 150px rgba(0,255,180,.10);
+}
+
+.channel-card::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+
+    background:
+    conic-gradient(
+    from 0deg,
+    #25D366,
+    #00ffd5,
+    #7c5cff,
+    #25D366);
+
+    animation:borderSpin 8s linear infinite;
+
+    z-index:-2;
+}
+
+.channel-card::after{
+    content:"";
+    position:absolute;
+    inset:2px;
+
+    background:
+    linear-gradient(
+    145deg,
+    rgba(4,12,8,.96),
+    rgba(8,18,14,.96));
+
+    border-radius:34px;
+
+    z-index:-1;
+}
+
+@keyframes borderSpin{
+from{
+transform:rotate(0deg);
+}
+to{
+transform:rotate(360deg);
+}
+}
+
+/* Badge */
+
+.channel-badge{
+    display:inline-block;
+
+    padding:10px 20px;
+
+    border-radius:100px;
+
+    background:rgba(37,211,102,.12);
+
+    border:1px solid rgba(37,211,102,.25);
+
+    color:#25D366;
+
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.18em;
+}
+
+/* Name */
+
+.channel-name{
+    margin:24px 0 12px;
+
+    font-family:'Space Grotesk',sans-serif;
+    font-size:58px;
+    font-weight:800;
+
+    background:
+    linear-gradient(
+    90deg,
+    #ffffff,
+    #25D366,
+    #00ffd5);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.channel-credit{
+    display:inline-flex;
+    align-items:center;
+
+    padding:10px 18px;
+
+    border-radius:100px;
+
+    background:rgba(37,211,102,.08);
+
+    border:1px solid rgba(37,211,102,.15);
+
+    color:#25D366;
+
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.18em;
+
+    margin-bottom:25px;
+}
+
+/* Description */
+
+.channel-desc{
+    max-width:760px;
+    color:#c8e9d9;
+    line-height:1.9;
+}
+
+/* Buttons */
+
+.channel-btns{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:35px;
+}
+
+.channel-btn{
+    text-decoration:none;
+    padding:16px 34px;
+    border-radius:14px;
+    font-weight:700;
+    transition:.35s;
+}
+
+.channel-btn.primary{
+    background:
+    linear-gradient(
+    135deg,
+    #25D366,
+    #00ffd5);
+
+    color:#04110a;
+
+    box-shadow:
+    0 0 40px rgba(37,211,102,.30);
+}
+
+.channel-btn.primary:hover{
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 0 60px rgba(37,211,102,.50);
+}
+
+/* Tags */
+
+.channel-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:35px;
+}
+
+.channel-tag{
+    padding:10px 18px;
+
+    border-radius:100px;
+
+    background:
+    rgba(255,255,255,.05);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    color:#eafff4;
+
+    transition:.3s;
+}
+
+.channel-tag:hover{
+    border-color:rgba(37,211,102,.30);
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 0 25px rgba(37,211,102,.15);
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.channel-board{
+padding:45px 25px;
+}
+
+.channel-title{
+font-size:48px;
+}
+
+.channel-name{
+font-size:36px;
+}
+
+.channel-card{
+padding:35px 25px;
+}
+
+}
 .nexora-btn-primary:hover{
   transform:translateY(-3px);
 }
@@ -1729,6 +2175,77 @@ box-shadow:0 0 25px rgba(0,255,255,.35)!important;
     <div class="stat"><div class="stat-num">0</div><div class="stat-label">Companies interested</div></div>
     <div class="stat"><div class="stat-num">1k+</div><div class="stat-label">Followers</div></div>
   </div>
+<div class="section">
+
+<div class="channel-board">
+
+    <div class="channel-particles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="channel-orb"></div>
+    <div class="channel-ring"></div>
+
+    <h2 class="channel-title">
+        Community Channel
+    </h2>
+
+    <p class="channel-sub">
+        Follow our official WhatsApp Channel for updates,
+        announcements, technology insights, AI projects,
+        future innovations and community activities.
+    </p>
+
+    <div class="channel-card">
+
+        <div class="channel-badge">
+            OFFICIAL CHANNEL
+        </div>
+
+        <div class="channel-name">
+            WhatsApp Community
+        </div>
+
+        <div class="channel-credit">
+            STAY CONNECTED
+        </div>
+
+        <div class="channel-desc">
+            Join our official WhatsApp Channel and become part
+            of a growing technology community. Get instant updates
+            on projects, innovation, AI developments, future launches,
+            research initiatives and important announcements.
+        </div>
+
+        <div class="channel-btns">
+
+            <a href="https://whatsapp.com/channel/0029Vb8rod5F1YlU1qqcGj2a"
+               target="_blank"
+               class="channel-btn primary">
+               📢 JOIN CHANNEL
+            </a>
+
+        </div>
+
+        <div class="channel-tags">
+            <span class="channel-tag">Technology</span>
+            <span class="channel-tag">Innovation</span>
+            <span class="channel-tag">Projects</span>
+            <span class="channel-tag">Artificial Intelligence</span>
+            <span class="channel-tag">Future Tech</span>
+            <span class="channel-tag">Community</span>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
 <div class="section">
 
 <div class="analysis-board">
