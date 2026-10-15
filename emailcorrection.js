@@ -5,7 +5,7 @@ const SUPABASE_URL = "https://hbudhkyftxdqlwcdyotq.supabase.co";
 const SUPABASE_KEY =
   "sb_publishable_xrX2qILCdLyF7fmrlqMGpA_Pv6D7xYG";
 
-const TARGET_USER_ID = 14;
+const TARGET_USER_ID = 15;
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
