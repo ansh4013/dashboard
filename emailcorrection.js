@@ -1,4 +1,3 @@
-
 import { createClient } from "https://esm.sh/@supabase/supabase-js";
 
 const SUPABASE_URL =
@@ -12,24 +11,34 @@ const supabase = createClient(
   SUPABASE_KEY
 );
 
-// Check email format.
+// Validate email format.
 function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+    (email || "").trim()
+  );
 }
 
-// Read the details saved by login.html.
+// Get details saved by login.html.
 function getLoginDetails() {
   return {
-    loggedIn: localStorage.getItem("loggedIn") === "true",
-    name: (localStorage.getItem("userName") || "").trim(),
-    email: (localStorage.getItem("userEmail") || "").trim(),
-    phone: (localStorage.getItem("userPhone") || "").trim()
+    loggedIn:
+      localStorage.getItem("loggedIn") === "true",
+    name:
+      (localStorage.getItem("userName") || "").trim(),
+    email:
+      (localStorage.getItem("userEmail") || "")
+        .trim()
+        .toLowerCase(),
+    phone:
+      (localStorage.getItem("userPhone") || "").trim()
   };
 }
 
-// Display a required email correction popup.
+// Show the required email correction popup.
 function showEmailCorrection(userRow) {
-  if (document.getElementById("emailCorrectionScreen")) return;
+  if (document.getElementById("emailCorrectionScreen")) {
+    return;
+  }
 
   const overlay = document.createElement("div");
   overlay.id = "emailCorrectionScreen";
@@ -37,12 +46,12 @@ function showEmailCorrection(userRow) {
   Object.assign(overlay.style, {
     position: "fixed",
     inset: "0",
-    zIndex: "999999",
+    zIndex: "2147483647",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    padding: "20px",
-    background: "rgba(3, 7, 18, 0.94)",
+    padding: "18px",
+    background: "rgba(3, 7, 18, 0.96)",
     backdropFilter: "blur(14px)"
   });
 
@@ -51,34 +60,39 @@ function showEmailCorrection(userRow) {
       width:100%;
       max-width:420px;
       box-sizing:border-box;
-      padding:30px;
-      border-radius:24px;
+      padding:28px;
+      border-radius:22px;
       background:#0b1224;
-      border:1px solid rgba(0,255,255,.3);
-      box-shadow:0 0 40px rgba(0,255,255,.12);
+      border:1px solid rgba(0,255,255,.35);
+      box-shadow:0 0 40px rgba(0,255,255,.15);
       color:#f8fafc;
       font-family:Inter,Arial,sans-serif;
     ">
-      <div style="text-align:center;font-size:36px;margin-bottom:12px">
-        ✉️
-      </div>
+
+      <div style="
+        text-align:center;
+        font-size:38px;
+        margin-bottom:12px;
+      ">✉️</div>
 
       <h2 style="
         margin:0 0 12px;
         color:#00ffff;
         text-align:center;
-        font-size:25px;
+        font-size:24px;
       ">
-        Email Correction Required
+        Correct Your Email
       </h2>
 
       <p style="
         color:#cbd5e1;
         line-height:1.6;
-        margin-bottom:22px;
+        margin:0 0 22px;
         text-align:center;
       ">
-        Please enter a valid email address to continue to your dashboard.
+        The email address you entered is invalid.
+        Please enter your correct email address
+        to continue to your dashboard.
       </p>
 
       <label for="correctedEmail" style="
@@ -86,7 +100,7 @@ function showEmailCorrection(userRow) {
         margin-bottom:8px;
         color:#e2e8f0;
       ">
-        Email Address
+        Correct Email Address
       </label>
 
       <input
@@ -105,20 +119,22 @@ function showEmailCorrection(userRow) {
           color:white;
           outline:none;
           margin-bottom:12px;
-          font-size:15px;
+          font-size:16px;
         "
       >
 
-      <p id="emailCorrectionError"
-         role="alert"
-         aria-live="polite"
-         style="
-           color:#fca5a5;
-           min-height:20px;
-           font-size:13px;
-           margin:0 0 12px;
-         ">
-      </p>
+      <p
+        id="emailCorrectionError"
+        role="alert"
+        aria-live="polite"
+        style="
+          color:#fca5a5;
+          min-height:20px;
+          font-size:13px;
+          margin:0 0 12px;
+          overflow-wrap:anywhere;
+        "
+      ></p>
 
       <button type="submit" style="
         width:100%;
@@ -129,7 +145,9 @@ function showEmailCorrection(userRow) {
         color:#06111c;
         font-size:15px;
         font-weight:700;
-        background:linear-gradient(135deg,#00ffff,#8b5cf6);
+        background:linear-gradient(
+          135deg,#00ffff,#8b5cf6
+        );
       ">
         SAVE EMAIL & CONTINUE
       </button>
@@ -137,30 +155,39 @@ function showEmailCorrection(userRow) {
       <p style="
         margin:16px 0 0;
         text-align:center;
-        color:#64748b;
+        color:#94a3b8;
         font-size:12px;
+        line-height:1.5;
       ">
-        Your dashboard will continue after the email is saved.
+        Your email will be saved before the dashboard opens.
       </p>
+
     </form>
   `;
 
   document.body.appendChild(overlay);
   document.body.style.overflow = "hidden";
 
-  // Do not close the popup when the background is clicked.
+  const form =
+    document.getElementById("emailCorrectionForm");
+
+  const input =
+    document.getElementById("correctedEmail");
+
+  const errorBox =
+    document.getElementById("emailCorrectionError");
+
+  const button = form.querySelector("button");
+
+  // Show the currently stored email for correction.
+  input.value = userRow.email || "";
+
+  // Prevent dismissing the required popup by clicking outside.
   overlay.addEventListener("click", event => {
     if (event.target === overlay) {
       event.preventDefault();
     }
   });
-
-  const form = document.getElementById("emailCorrectionForm");
-  const input = document.getElementById("correctedEmail");
-  const errorBox = document.getElementById("emailCorrectionError");
-  const button = form.querySelector("button");
-
-  input.value = userRow.email || "";
 
   form.addEventListener("submit", async event => {
     event.preventDefault();
@@ -169,9 +196,23 @@ function showEmailCorrection(userRow) {
 
     const email = input.value.trim().toLowerCase();
 
+    // Reject an invalid email.
     if (!isValidEmail(email)) {
       errorBox.textContent =
-        "Please enter a correctly formatted email address.";
+        "Please enter a valid email, such as name@example.com.";
+
+      input.focus();
+      return;
+    }
+
+    // Don't save if the email has not actually changed.
+    if (
+      email ===
+      (userRow.email || "").trim().toLowerCase()
+    ) {
+      errorBox.textContent =
+        "Please enter your corrected email address.";
+
       input.focus();
       return;
     }
@@ -180,9 +221,10 @@ function showEmailCorrection(userRow) {
     button.textContent = "SAVING EMAIL...";
 
     try {
+      // Update only the matched database record.
       const { data, error } = await supabase
         .from("users")
-        .update({ email })
+        .update({ email: email })
         .eq("id", userRow.id)
         .select("id,email")
         .maybeSingle();
@@ -193,14 +235,18 @@ function showEmailCorrection(userRow) {
 
       if (!data) {
         throw new Error(
-          "Email was not updated. Check your Supabase permissions and RLS policies."
+          "The email was not updated. Check your Supabase permissions and RLS policies."
         );
       }
 
-      // Update the saved browser details.
+      // Update browser details after database confirmation.
       localStorage.setItem("userEmail", data.email);
 
-      // Close only after the database confirms the update.
+      errorBox.style.color = "#86efac";
+      errorBox.textContent =
+        "Email saved successfully. Opening dashboard...";
+
+      // Remove popup only after the update succeeds.
       overlay.remove();
       document.body.style.overflow = "";
 
@@ -210,18 +256,21 @@ function showEmailCorrection(userRow) {
       console.error("Email update failed:", error);
 
       errorBox.textContent =
-        error.message || "Could not save your email. Please try again.";
+        error.message ||
+        "Unable to save the email. Please try again.";
 
     } finally {
-      button.disabled = false;
-      button.textContent = "SAVE EMAIL & CONTINUE";
+      if (document.body.contains(form)) {
+        button.disabled = false;
+        button.textContent = "SAVE EMAIL & CONTINUE";
+      }
     }
   });
 
   input.focus();
 }
 
-// Find the database record created by login.html.
+// Find the database record belonging to this login.
 async function checkEmailCorrection() {
   const login = getLoginDetails();
 
@@ -247,27 +296,31 @@ async function checkEmailCorrection() {
       throw error;
     }
 
-    // Do not risk updating the wrong record if duplicates exist.
+    // Never guess which record to update.
     if (!data || data.length !== 1) {
       console.warn(
-        "Email correction skipped: no unique matching user record was found."
+        "Email correction: no unique matching user found.",
+        data
       );
       return;
     }
 
     const userRow = data[0];
 
-    // Show the popup only when the stored email is invalid.
-    if (!isValidEmail(userRow.email || "")) {
+    // Show popup only if the saved email is invalid.
+    if (!isValidEmail(userRow.email)) {
       showEmailCorrection(userRow);
     }
 
   } catch (error) {
-    console.error("Email correction check failed:", error);
+    console.error(
+      "Email correction check failed:",
+      error
+    );
   }
 }
 
-// Run after the page is ready.
+// Run after the dashboard page loads.
 if (document.readyState === "loading") {
   document.addEventListener(
     "DOMContentLoaded",
