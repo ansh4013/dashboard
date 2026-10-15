@@ -1,0 +1,108 @@
+
+/* Email Correction Full-Screen Design */
+
+#emailCorrectionScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+  background: #07111f;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+#emailCorrectionForm {
+  width: 100%;
+  max-width: 430px;
+  box-sizing: border-box;
+  padding: 28px;
+  border-radius: 20px;
+  background: #111e30;
+  border: 1px solid #00d9ff;
+  box-shadow: 0 0 35px #00d9ff25;
+}
+
+#emailCorrectionForm h2 {
+  margin-top: 0;
+  color: #00d9ff;
+  font-size: 24px;
+}
+
+#emailCorrectionForm p {
+  line-height: 1.6;
+  color: #d1dbe8;
+}
+
+#emailCorrectionForm label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+#correctedEmail {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 12px 0;
+  padding: 14px;
+  border-radius: 9px;
+  border: 1px solid #456078;
+  outline: none;
+  background: #07111f;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+#correctedEmail:focus {
+  border-color: #00d9ff;
+  box-shadow: 0 0 0 3px #00d9ff20;
+}
+
+#emailCorrectionError {
+  color: #ff8585 !important;
+  font-size: 14px;
+}
+
+#emailCorrectionForm button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 9px;
+  background: #00d9ff;
+  color: #06111c;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+#emailCorrectionForm button:hover {
+  background: #63eaff;
+  transform: translateY(-1px);
+}
+
+#emailCorrectionForm button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+  transform: none;
+}
+
+@media (max-width: 480px) {
+  #emailCorrectionScreen {
+    padding: 16px;
+  }
+
+  #emailCorrectionForm {
+    padding: 22px;
+    border-radius: 16px;
+  }
+
+  #emailCorrectionForm h2 {
+    font-size: 21px;
+  }
+}
