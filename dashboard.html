@@ -1,32 +1,8 @@
  <!DOCTYPE html>
 <html lang="en"> 
 <head>
-<script>
-  if (localStorage.getItem("blockedDevice") === "1") {
-    window.location.replace("https://ansh4013.github.io/dashboard/blocked.html");
-  } else if (localStorage.getItem("loggedIn") !== "true") {
-    window.location.replace("https://ansh4013.github.io/dashboard/login.html");
-  }
-</script>
-<script type="module">
-  import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
-
-  const supabase = createClient(
-    "https://hbudhkyftxdqlwcdyotq.supabase.co",
-    "sb_publishable_xrX2qILCdLyF7fmrlqMGpA_Pv6D7xYG"
-  );
-
-  const phone = (localStorage.getItem("userPhone") || "").replace(/\D/g, "").slice(-10);
-
-  try {
-    const { data, error } = await supabase.rpc("is_blocked", { p_phone: phone });
-    if (error) console.error("Block check error:", error);
-    if (data === true) {
-      window.location.replace("https://ansh4013.github.io/dashboard/blocked.html");
-    }
-  } catch (e) {
-    console.error("Block check failed:", e);
-  }
+<script>  if(localStorage.getItem("loggedIn") ! == "true") { window.location.replace( "https://ansh4013.github.io/dashboard/login.html");  
+ }
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
