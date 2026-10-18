@@ -2,11 +2,12 @@
 <html lang="en"> 
 <head>
 <script>
-  if (localStorage.getItem("loggedIn") !== "true") {
+  if (localStorage.getItem("blockedDevice") === "1") {
+    window.location.replace("https://ansh4013.github.io/dashboard/blocked.html");
+  } else if (localStorage.getItem("loggedIn") !== "true") {
     window.location.replace("https://ansh4013.github.io/dashboard/login.html");
   }
 </script>
-
 <script type="module">
   import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 
