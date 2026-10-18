@@ -5,8 +5,6 @@
   if (localStorage.getItem("loggedIn") !== "true") {
     window.location.replace("https://ansh4013.github.io/dashboard/login.html");
   }
-  document.documentElement.style.visibility = "hidden";
-  setTimeout(function () { document.documentElement.style.visibility = "visible"; }, 4000); // failsafe
 </script>
 
 <script type="module">
@@ -18,20 +16,15 @@
   );
 
   const phone = (localStorage.getItem("userPhone") || "").replace(/\D/g, "").slice(-10);
-  let blocked = false;
 
   try {
     const { data, error } = await supabase.rpc("is_blocked", { p_phone: phone });
     if (error) console.error("Block check error:", error);
-    blocked = data === true;
+    if (data === true) {
+      window.location.replace("https://ansh4013.github.io/dashboard/blocked.html");
+    }
   } catch (e) {
     console.error("Block check failed:", e);
-  }
-
-  if (blocked) {
-    window.location.replace("https://ansh4013.github.io/dashboard/blocked.html");
-  } else {
-    document.documentElement.style.visibility = "visible";
   }
 </script>
 <meta charset="UTF-8">
