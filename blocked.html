@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Access denied</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  try { localStorage.clear(); sessionStorage.clear(); } catch (e) {}
+</script>
+<style>
+  :root{
+    --bg:#050714;
+    --pass:#0E1330;
+    --pass-edge:rgba(140,150,220,.28);
+    --text:#F1F3FC;
+    --muted:#8B93BE;
+    --cyan:#00D9FF;
+    --violet:#7C5CFF;
+    --red:#FF4D6A;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;min-height:100%;}
+  body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:34px;
+    padding:32px 20px 40px;
+    background:
+      radial-gradient(640px 420px at 14% -8%, rgba(124,92,255,.18), transparent 60%),
+      radial-gradient(560px 440px at 100% 0%, rgba(0,217,255,.08), transparent 55%),
+      linear-gradient(rgba(140,150,220,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(140,150,220,.04) 1px, transparent 1px),
+      var(--bg);
+    background-size:auto, auto, 42px 42px, 42px 42px, auto;
+    color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    overflow-x:hidden;
+  }
+
+  /* ---------- lanyard + pass ---------- */
+  .scene{perspective:1100px;display:flex;flex-direction:column;align-items:center;}
+  .strap{
+    width:14px;height:90px;
+    background:linear-gradient(90deg,#2a3170,#4a54b8,#2a3170);
+    border-radius:0 0 3px 3px;
+    margin-bottom:-6px;
+    transform-origin:top center;
+    animation:dangle 1.6s cubic-bezier(.2,.7,.3,1) 1;
+  }
+  @keyframes dangle{
+    0%{transform:rotate(-7deg);}
+    35%{transform:rotate(5deg);}
+    65%{transform:rotate(-2.5deg);}
+    100%{transform:rotate(0);}
+  }
+  .pass{
+    position:relative;
+    width:min(320px,86vw);
+    padding:44px 26px 26px;
+    border-radius:22px;
+    background:
+      linear-gradient(160deg, rgba(124,92,255,.14), transparent 45%),
+      var(--pass);
+    border:1px solid var(--pass-edge);
+    box-shadow:0 30px 80px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.06);
+    transform-style:preserve-3d;
+    transition:transform .25s ease-out;
+    will-change:transform;
+  }
+  .pass::before{ /* lanyard slot */
+    content:"";
+    position:absolute;top:16px;left:50%;
+    width:64px;height:10px;margin-left:-32px;
+    border-radius:10px;
+    background:var(--bg);
+    box-shadow:inset 0 1px 3px rgba(0,0,0,.8), 0 0 0 1px var(--pass-edge);
+  }
+  .pass h2{
+    margin:0 0 4px;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:22px;
+  }
+  .pass .sub{margin:0 0 22px;color:var(--muted);font-size:14px;}
+  .photo{
+    width:100%;height:120px;margin-bottom:18px;
+    border-radius:14px;
+    border:1px dashed var(--pass-edge);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--muted);font-size:13px;
+    background:repeating-linear-gradient(135deg,transparent 0 10px,rgba(140,150,220,.05) 10px 20px);
+  }
+  .row{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);padding:9px 0;border-top:1px solid rgba(140,150,220,.14);}
+  .row b{color:var(--text);font-weight:500;}
+  .row .bad{color:var(--red);font-weight:500;}
+  .bars{display:block;width:100%;height:46px;margin-top:16px;opacity:.55;}
+
+  /* ---------- the one memorable moment: the stamp ---------- */
+  .stamp{
+    position:absolute;
+    left:50%;top:56%;
+    padding:10px 18px 8px;
+    border:4px solid var(--red);
+    border-radius:10px;
+    color:var(--red);
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:30px;
+    letter-spacing:.04em;
+    line-height:1;
+    white-space:nowrap;
+    background:rgba(5,7,20,.35);
+    transform:translate(-50%,-50%) rotate(-13deg) scale(1);
+    opacity:1;
+    mix-blend-mode:normal;
+    animation:slam .55s cubic-bezier(.2,1.4,.4,1) .9s both;
+    box-shadow:0 0 0 2px rgba(255,77,106,.25), 0 0 30px rgba(255,77,106,.25);
+    pointer-events:none;
+  }
+  @keyframes slam{
+    0%{transform:translate(-50%,-50%) rotate(-13deg) scale(3.2);opacity:0;}
+    70%{opacity:1;}
+    100%{transform:translate(-50%,-50%) rotate(-13deg) scale(1);opacity:1;}
+  }
+  .pass.thud{animation:thud .35s ease-out 1.25s 1;}
+  @keyframes thud{
+    0%,100%{translate:0 0;}
+    30%{translate:0 6px;}
+    60%{translate:0 -2px;}
+  }
+
+  /* ---------- copy ---------- */
+  .copy{text-align:center;max-width:460px;}
+  .copy h1{
+    margin:0 0 10px;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(24px,5.6vw,34px);
+    line-height:1.2;
+  }
+  .copy p{margin:0;color:var(--muted);line-height:1.7;font-size:15px;}
+
+  @media (prefers-reduced-motion: reduce){
+    .strap,.pass.thud{animation:none;}
+    .stamp{animation:none;}
+    .pass{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="scene">
+    <div class="strap" aria-hidden="true"></div>
+    <div class="pass thud" id="pass" aria-hidden="true">
+      <h2>Visitor pass</h2>
+      <p class="sub">Portfolio access</p>
+      <div class="photo">No photo on file</div>
+      <div class="row"><span>Holder</span><b>Unverified</b></div>
+      <div class="row"><span>Status</span><b class="bad">Revoked</b></div>
+      <svg class="bars" id="bars" viewBox="0 0 280 46" preserveAspectRatio="none"></svg>
+      <div class="stamp">ACCESS REVOKED</div>
+    </div>
+  </div>
+
+  <div class="copy">
+    <h1>You are not allowed to view this portfolio</h1>
+    <p>The owner has removed your access to this site.</p>
+  </div>
+
+<script>
+  // barcode: fixed pattern so it looks the same every load
+  (function(){
+    var svg = document.getElementById('bars'), x = 0, i = 0, out = '';
+    var w = [3,1,2,1,4,1,1,3,2,1,3,1,2,4,1,2,1,3,1,1,2,3,1,4,2,1,1,3,2,1,2,4,1,1,3,1,2,1,3,2,1,4,1,2,1,1,3,2,1,3,1,2,4,1,2,1,1,3,1,2];
+    while (x < 280 && i < w.length) {
+      if (i % 2 === 0) out += '<rect x="'+x+'" y="0" width="'+w[i]+'" height="46" fill="#8B93BE"/>';
+      x += w[i] * 2; i++;
+    }
+    svg.innerHTML = out;
+  })();
+
+  // pass tilts toward the pointer / finger
+  (function(){
+    var pass = document.getElementById('pass');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    function tilt(e){
+      var p = e.touches ? e.touches[0] : e;
+      var r = pass.getBoundingClientRect();
+      var dx = (p.clientX - (r.left + r.width/2)) / window.innerWidth;
+      var dy = (p.clientY - (r.top + r.height/2)) / window.innerHeight;
+      pass.style.transform = 'rotateY(' + (dx*28) + 'deg) rotateX(' + (-dy*28) + 'deg)';
+    }
+    function reset(){ pass.style.transform = ''; }
+    window.addEventListener('pointermove', tilt);
+    window.addEventListener('touchmove', tilt, {passive:true});
+    window.addEventListener('pointerleave', reset);
+    window.addEventListener('touchend', reset);
+  })();
+</script>
+</body>
+</html>
