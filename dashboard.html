@@ -6,27 +6,34 @@
     window.location.replace("https://ansh4013.github.io/dashboard/login.html");
   }
   document.documentElement.style.visibility = "hidden";
+  setTimeout(function () { document.documentElement.style.visibility = "visible"; }, 4000); // failsafe
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
-<script>
-(async () => {
-  const sb = supabase.createClient("YOUR_SUPABASE_URL", "YOUR_ANON_KEY");
-  const phone = (localStorage.getItem("userPhone") || "").replace(/\D/g, "").slice(-10);
 
+<script type="module">
+  import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
+
+  const supabase = createClient(
+    "https://hbudhkyftxdqlwcdyotq.supabase.co",
+    "sb_publishable_xrX2qILCdLyF7fmrlqMGpA_Pv6D7xYG"
+  );
+
+  const phone = (localStorage.getItem("userPhone") || "").replace(/\D/g, "").slice(-10);
   let blocked = false;
+
   try {
-    const { data } = await sb.rpc("is_blocked", { p_phone: phone });
+    const { data, error } = await supabase.rpc("is_blocked", { p_phone: phone });
+    if (error) console.error("Block check error:", error);
     blocked = data === true;
-  } catch (e) {}
+  } catch (e) {
+    console.error("Block check failed:", e);
+  }
 
   if (blocked) {
     window.location.replace("https://ansh4013.github.io/dashboard/blocked.html");
-    return;
+  } else {
+    document.documentElement.style.visibility = "visible";
   }
-  document.documentElement.style.visibility = "visible";
-})();
 </script>
-</script>  
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard</title>
