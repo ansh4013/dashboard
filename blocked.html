@@ -14,7 +14,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <script>
-  try { localStorage.clear(); sessionStorage.clear(); } catch (e) {}
+  try {
+    localStorage.removeItem("loggedIn");
+    localStorage.removeItem("userPhone");
+    localStorage.setItem("blockedDevice", "1");   // remembers the block on this device
+  } catch (e) {}
+
+  // keep them on this page if they press Back
+  history.pushState(null, "", location.href);
+  window.addEventListener("popstate", function () {
+    history.pushState(null, "", location.href);
+  });
 </script>
 <style>
   :root{
