@@ -2728,6 +2728,16 @@ location.reload();}</script>
 
 </div>
 <script src="https://ansh4013.github.io/controlcentre/tracker.js" data-site="dashboard" async></script>
+<script src="https://ansh4013.github.io/controlcentre/analysis-flags.js"></script>
+<script>
+  const flags = AnalysisFlags.create(
+    [{"key":"streaming-responses","on":true,"rollout":25,"env":["prod"]},{"key":"bento-dashboard","on":true,"rollout":100,"env":["prod","dev"]},{"key":"voice-input","on":false,"rollout":0,"env":["dev"]}],
+    { env: "prod" }
+  );
+  if (flags.isOn("streaming-responses")) {
+    // show the new experience
+  }
+</script>
 <script>
 const glow = document.getElementById('cursorGlow');
 document.addEventListener('mousemove', (e) => {
