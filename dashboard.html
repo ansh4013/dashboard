@@ -2140,6 +2140,151 @@ letter-spacing:.18em!important;
 background:linear-gradient(135deg,#00ffff,#7c3aed)!important;
 box-shadow:0 0 25px rgba(0,255,255,.35)!important;
 }
+ /* =====================================
+   ITZ DASHBOARD — INTERACTIVE BACKGROUND
+===================================== */
+
+:root {
+    --neon-cyan: #00e5ff;
+    --neon-pink: #ff00c8;
+    --neon-purple: #9d4edd;
+}
+
+html {
+    min-height: 100%;
+    background: #050817;
+}
+
+body {
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(3, 5, 18, 0.30),
+            rgba(3, 5, 18, 0.68)
+        ),
+        url("https://raw.githubusercontent.com/ansh4013/dashboard/main/file_000000000ffc8211b60b44f075470fa5.png")
+        center center / cover no-repeat fixed !important;
+
+    background-attachment: fixed !important;
+    color: var(--tx);
+}
+
+/* Interactive light glow */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(0, 229, 255, 0.17),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(255, 0, 200, 0.12),
+            transparent 35%
+        );
+
+    animation: neonAtmosphere 8s ease-in-out infinite alternate;
+}
+
+@keyframes neonAtmosphere {
+    from {
+        opacity: 0.45;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Moving neon light sweep */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background: linear-gradient(
+        110deg,
+        transparent 35%,
+        rgba(0, 229, 255, 0.07) 48%,
+        rgba(255, 0, 200, 0.07) 52%,
+        transparent 65%
+    );
+
+    background-size: 250% 100%;
+    animation: neonSweep 12s linear infinite;
+}
+
+@keyframes neonSweep {
+    from {
+        background-position: 200% 0;
+    }
+    to {
+        background-position: -200% 0;
+    }
+}
+
+/* Glass effect for dashboard sections */
+.card,
+.panel,
+.hero,
+.live,
+section {
+    backdrop-filter: blur(5px);
+}
+
+/* Smooth transitions */
+button,
+.card,
+.panel {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover glow */
+.card:hover,
+.panel:hover {
+    box-shadow:
+        0 0 18px rgba(0, 229, 255, 0.16),
+        0 0 30px rgba(255, 0, 200, 0.08);
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+    body {
+        background-position: center center;
+        background-attachment: scroll !important;
+    }
+
+    body::before,
+    body::after {
+        position: absolute;
+    }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+    body::before,
+    body::after {
+        animation: none;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+ }
 </style>
 <link rel="stylesheet" href="./emailcorrection.css">  
 <script type="module" src="./emailcorrection.js"></script>  
@@ -2690,6 +2835,48 @@ class="starlink-btn primary">
 
         </div>
 <button onclick="logout()">Test Logout</button>
+     <script>
+/* =====================================
+   ITZ DASHBOARD — INTERACTIVE LIGHT
+===================================== */
+
+(function () {
+    const root = document.body;
+
+    function updateLight(x, y) {
+        root.style.setProperty(
+            "--mouse-x",
+            (x / window.innerWidth * 100) + "%"
+        );
+
+        root.style.setProperty(
+            "--mouse-y",
+            (y / window.innerHeight * 100) + "%"
+        );
+    }
+
+    // Desktop mouse interaction
+    document.addEventListener("pointermove", function (event) {
+        updateLight(event.clientX, event.clientY);
+    }, { passive: true });
+
+    // Mobile touch interaction
+    document.addEventListener("touchmove", function (event) {
+        if (!event.touches.length) return;
+
+        updateLight(
+            event.touches[0].clientX,
+            event.touches[0].clientY
+        );
+    }, { passive: true });
+
+    // Initial glow position
+    updateLight(
+        window.innerWidth / 2,
+        window.innerHeight / 2
+    );
+})();
+     </script>
 <script>
 function logout(){
 localStorage.removeItem( "loggedIn");
