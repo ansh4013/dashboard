@@ -55,29 +55,33 @@
   border-radius:20px;
 }
 
+
 /* =========================================
-   CHANGELOG CARD — STYLESHEET
-   File: changelog-card.css
+   CHANGELOG CARD — DASHBOARD COMPATIBLE CSS
+   All styles scoped to .chg-section
 ========================================= */
 
-* {
-  box-sizing: border-box;
+.chg-section {
+  position: relative;
+  width: 100%;
+  margin: 35px 0;
+  padding: 0;
+  color: #f4f7ff;
+  font-family: 'Inter', sans-serif;
 }
 
-body {
-  margin: 0;
-  padding: 16px;
-  background: #060913;
-  color: #f4f7ff;
-  font-family: Inter, Arial, sans-serif;
+.chg-section,
+.chg-section * {
+  box-sizing: border-box;
 }
 
 /* MAIN CARD */
 
-.chg-card {
+.chg-section .chg-card {
   position: relative;
   isolation: isolate;
   overflow: hidden;
+  width: 100%;
   max-width: 950px;
   margin: auto;
   padding: clamp(24px, 6vw, 55px);
@@ -92,7 +96,7 @@ body {
 
 /* BACKGROUND GRID */
 
-.chg-grid {
+.chg-section .chg-grid {
   position: absolute;
   inset: 0;
   z-index: -1;
@@ -112,7 +116,7 @@ body {
 
 /* BACKGROUND GLOW */
 
-.chg-glow {
+.chg-section .chg-glow {
   position: absolute;
   z-index: -1;
   right: -80px;
@@ -122,11 +126,12 @@ body {
   border-radius: 50%;
   background: #8b5cf650;
   filter: blur(70px);
+  pointer-events: none;
 }
 
 /* EYEBROW */
 
-.chg-card .eyebrow {
+.chg-section .chg-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -142,9 +147,10 @@ body {
 
 /* ANIMATED DOT */
 
-.chg-card .dot {
+.chg-section .chg-dot {
   width: 7px;
   height: 7px;
+  flex-shrink: 0;
   border-radius: 50%;
   background: #67e8f9;
   box-shadow: 0 0 13px #67e8f9;
@@ -159,24 +165,31 @@ body {
 
 /* MAIN HEADING */
 
-.chg-card h1 {
+.chg-section .chg-heading {
   margin: 28px 0 16px;
-  font: 700 clamp(35px, 7vw, 65px)/1.08 "Space Grotesk", sans-serif;
+  font: 700 clamp(35px, 7vw, 65px)/1.08
+    'Space Grotesk', sans-serif;
   letter-spacing: -.05em;
+  color: #f4f7ff;
 }
 
-.chg-card .gradient {
+.chg-section .chg-gradient {
   color: transparent;
-  background: linear-gradient(100deg, #fff, #67e8f9 48%, #a78bfa);
+  background: linear-gradient(
+    100deg,
+    #fff,
+    #67e8f9 48%,
+    #a78bfa
+  );
   background-clip: text;
   -webkit-background-clip: text;
 }
 
-/* INTRODUCTION */
+/* INTRO */
 
-.chg-card .intro {
+.chg-section .chg-intro {
   max-width: 700px;
-  margin-bottom: 32px;
+  margin: 0 0 32px;
   color: #a9b4ce;
   font-size: 14px;
   line-height: 1.9;
@@ -184,16 +197,20 @@ body {
 
 /* CONTENT PANEL */
 
-.chg-card .panel {
+.chg-section .chg-panel {
   padding: clamp(20px, 4vw, 35px);
   border: 1px solid #a78bfa35;
   border-radius: 22px;
-  background: linear-gradient(135deg, #ffffff0c, #ffffff03);
+  background: linear-gradient(
+    135deg,
+    #ffffff0c,
+    #ffffff03
+  );
 }
 
-/* TOP HEADER */
+/* PANEL HEADER */
 
-.chg-card .top {
+.chg-section .chg-panel-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -201,7 +218,8 @@ body {
   flex-wrap: wrap;
 }
 
-.chg-card .badge {
+.chg-section .chg-badge {
+  display: inline-block;
   padding: 9px 12px;
   border: 1px solid #a78bfa40;
   border-radius: 8px;
@@ -212,7 +230,7 @@ body {
   letter-spacing: .12em;
 }
 
-.chg-card .index {
+.chg-section .chg-index {
   color: #7784a5;
   font-size: 10px;
   letter-spacing: .1em;
@@ -220,14 +238,14 @@ body {
 
 /* TITLE ROW */
 
-.chg-card .title-row {
+.chg-section .chg-title-row {
   display: flex;
   align-items: center;
   gap: 16px;
   margin-top: 28px;
 }
 
-.chg-card .iconbox {
+.chg-section .chg-icon {
   width: 58px;
   height: 58px;
   flex-shrink: 0;
@@ -241,14 +259,14 @@ body {
   box-shadow: 0 0 28px #67e8f91a;
 }
 
-/* SECONDARY HEADING */
-
-.chg-card h2 {
+.chg-section .chg-title-row h3 {
   margin: 0 0 7px;
-  font: 700 clamp(28px, 5vw, 42px)/1.1 "Space Grotesk", sans-serif;
+  color: #f4f7ff;
+  font: 700 clamp(28px, 5vw, 42px)/1.1
+    'Space Grotesk', sans-serif;
 }
 
-.chg-card .kicker {
+.chg-section .chg-kicker {
   margin: 0;
   color: #a78bfa;
   font-size: 10px;
@@ -258,7 +276,7 @@ body {
 
 /* DESCRIPTION */
 
-.chg-card .description {
+.chg-section .chg-description {
   margin: 22px 0;
   color: #b2bdd2;
   font-size: 14px;
@@ -267,7 +285,7 @@ body {
 
 /* TIMELINE */
 
-.chg-card .timeline {
+.chg-section .chg-timeline {
   margin-top: 25px;
   padding: 8px 20px;
   border: 1px solid #8b9bc326;
@@ -275,7 +293,7 @@ body {
   background: #070c18d9;
 }
 
-.chg-card .item {
+.chg-section .chg-timeline-item {
   display: grid;
   grid-template-columns: 14px minmax(0, 1fr) auto;
   align-items: center;
@@ -284,13 +302,13 @@ body {
   border-bottom: 1px solid #ffffff10;
 }
 
-.chg-card .item:last-child {
-  border: 0;
+.chg-section .chg-timeline-item:last-child {
+  border-bottom: 0;
 }
 
 /* TIMELINE MARKERS */
 
-.chg-card .marker {
+.chg-section .chg-timeline-marker {
   width: 9px;
   height: 9px;
   border-radius: 50%;
@@ -298,34 +316,35 @@ body {
   box-shadow: 0 0 13px #67e8f9;
 }
 
-.chg-card .marker.purple {
+.chg-section .chg-timeline-marker.purple {
   background: #a78bfa;
   box-shadow: 0 0 13px #a78bfa;
 }
 
-.chg-card .marker.teal {
+.chg-section .chg-timeline-marker.teal {
   background: #5eead4;
   box-shadow: 0 0 13px #5eead4;
 }
 
 /* TIMELINE TEXT */
 
-.chg-card .item strong {
+.chg-section .chg-timeline-item strong {
   display: block;
   margin-bottom: 6px;
+  color: #f4f7ff;
   font-size: 12px;
 }
 
-.chg-card .item small {
+.chg-section .chg-timeline-item small {
   display: block;
   color: #8e9bb7;
   font-size: 11px;
   line-height: 1.7;
 }
 
-/* CATEGORY LABELS */
+/* CATEGORY */
 
-.chg-card .category {
+.chg-section .chg-category {
   padding: 7px 9px;
   border: 1px solid #a5b4fc20;
   border-radius: 7px;
@@ -338,23 +357,23 @@ body {
 
 /* NOTE */
 
-.chg-card .note {
+.chg-section .chg-note {
   margin: 15px 0 0;
   color: #7583a3;
   font-size: 10px;
   line-height: 1.7;
 }
 
-/* ACTION BUTTONS */
+/* ACTIONS */
 
-.chg-card .actions {
+.chg-section .chg-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 28px;
 }
 
-.chg-card .btn {
+.chg-section .chg-btn {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -364,20 +383,24 @@ body {
   text-decoration: none;
   font-size: 11px;
   font-weight: 700;
-  transition: .25s;
+  transition: .25s ease;
 }
 
-.chg-card .btn:hover {
+.chg-section .chg-btn:hover {
   transform: translateY(-3px);
 }
 
-.chg-card .primary {
+.chg-section .chg-primary {
   color: #07111c;
-  background: linear-gradient(110deg, #67e8f9, #a5b4fc);
+  background: linear-gradient(
+    110deg,
+    #67e8f9,
+    #a5b4fc
+  );
   box-shadow: 0 8px 28px #67e8f920;
 }
 
-.chg-card .secondary {
+.chg-section .chg-secondary {
   color: #e4eaff;
   border: 1px solid #a5b4fc35;
   background: #ffffff05;
@@ -385,14 +408,14 @@ body {
 
 /* TAGS */
 
-.chg-card .tags {
+.chg-section .chg-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 25px;
 }
 
-.chg-card .tag {
+.chg-section .chg-tag {
   padding: 8px 10px;
   border: 1px solid #a5b4fc1c;
   border-radius: 8px;
@@ -403,7 +426,7 @@ body {
 
 /* FOOTER */
 
-.chg-card footer {
+.chg-section .chg-footer {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -416,46 +439,43 @@ body {
   letter-spacing: .08em;
 }
 
-/* MOBILE RESPONSIVE */
+/* RESPONSIVE */
 
 @media (max-width: 600px) {
-  body {
-    padding: 9px;
-  }
-
-  .chg-card {
+  .chg-section .chg-card {
     padding: 25px 17px;
   }
 
-  .chg-card .timeline {
+  .chg-section .chg-timeline {
     padding: 5px 12px;
   }
 
-  .chg-card .item {
+  .chg-section .chg-timeline-item {
     grid-template-columns: 12px minmax(0, 1fr);
     gap: 10px;
   }
 
-  .chg-card .category {
+  .chg-section .chg-category {
     grid-column: 2;
     justify-self: start;
   }
 
-  .chg-card .btn {
+  .chg-section .chg-btn {
     width: 100%;
   }
 }
 
-/* REDUCED MOTION ACCESSIBILITY */
+/* REDUCED MOTION */
 
 @media (prefers-reduced-motion: reduce) {
-  .chg-card *,
-  .chg-card *::before,
-  .chg-card *::after {
+  .chg-section *,
+  .chg-section *::before,
+  .chg-section *::after {
     animation: none !important;
     transition: none !important;
   }
 }
+
 
 .floating-feedback{
     position:fixed;
