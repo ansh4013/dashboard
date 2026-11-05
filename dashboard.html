@@ -2140,151 +2140,469 @@ letter-spacing:.18em!important;
 background:linear-gradient(135deg,#00ffff,#7c3aed)!important;
 box-shadow:0 0 25px rgba(0,255,255,.35)!important;
 }
- /* =====================================
-   ITZ DASHBOARD — INTERACTIVE BACKGROUND
-===================================== */
 
-:root {
-    --neon-cyan: #00e5ff;
-    --neon-pink: #ff00c8;
-    --neon-purple: #9d4edd;
+/* =========================================
+   ANALYSIS RANKING SYSTEM
+   REUSABLE CARD COMPONENT
+   ========================================= */
+
+.ars-card-section {
+  width: 100%;
+  padding: 18px;
+  color: #f4f7ff;
+  font-family: Inter, Arial, sans-serif;
+  box-sizing: border-box;
 }
 
-html {
-    min-height: 100%;
-    background: #050817;
+.ars-card-section *,
+.ars-card-section *::before,
+.ars-card-section *::after {
+  box-sizing: border-box;
 }
 
-body {
-    position: relative;
-    isolation: isolate;
-    min-height: 100vh;
+/* MAIN CONTAINER */
 
-    background:
-        linear-gradient(
-            180deg,
-            rgba(3, 5, 18, 0.30),
-            rgba(3, 5, 18, 0.68)
-        ),
-        url("https://raw.githubusercontent.com/ansh4013/dashboard/main/1793465149228.png");
-        center center / cover no-repeat fixed !important;
+.ars-project-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  max-width: 1100px;
+  margin: auto;
+  padding: clamp(24px, 6vw, 65px);
+  border: 1px solid #a78bfa35;
+  border-radius: 28px;
 
-    background-attachment: fixed !important;
-    color: var(--tx);
+  background:
+    radial-gradient(ellipse at 90% 0%, #7048c72d, transparent 38%),
+    radial-gradient(ellipse at 0% 100%, #06b6d421, transparent 40%),
+    linear-gradient(145deg, #070b16, #101426 55%, #080c18);
+
+  box-shadow: 0 30px 90px #0006;
 }
 
-/* Interactive light glow */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
+/* BACKGROUND GRID */
 
-    background:
-        radial-gradient(
-            circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-            rgba(0, 229, 255, 0.17),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 80% 20%,
-            rgba(255, 0, 200, 0.12),
-            transparent 35%
-        );
+.ars-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
 
-    animation: neonAtmosphere 8s ease-in-out infinite alternate;
+  background-image:
+    linear-gradient(#a78bfa0b 1px, transparent 1px),
+    linear-gradient(90deg, #a78bfa0b 1px, transparent 1px);
+
+  background-size: 36px 36px;
+  animation: ars-grid-move 22s linear infinite;
 }
 
-@keyframes neonAtmosphere {
-    from {
-        opacity: 0.45;
-    }
-    to {
-        opacity: 1;
-    }
+@keyframes ars-grid-move {
+  to {
+    background-position: 36px 36px;
+  }
 }
 
-/* Moving neon light sweep */
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
+/* AMBIENT GLOW */
 
-    background: linear-gradient(
-        110deg,
-        transparent 35%,
-        rgba(0, 229, 255, 0.07) 48%,
-        rgba(255, 0, 200, 0.07) 52%,
-        transparent 65%
-    );
-
-    background-size: 250% 100%;
-    animation: neonSweep 12s linear infinite;
+.ars-glow {
+  position: absolute;
+  z-index: -1;
+  right: -100px;
+  top: -100px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: #8b5cf640;
+  filter: blur(70px);
+  animation: ars-float 7s ease-in-out infinite alternate;
 }
 
-@keyframes neonSweep {
-    from {
-        background-position: 200% 0;
-    }
-    to {
-        background-position: -200% 0;
-    }
+@keyframes ars-float {
+  to {
+    transform: translate(-30px, 40px) scale(1.15);
+  }
 }
 
-/* Glass effect for dashboard sections */
-.card,
-.panel,
-.hero,
-.live,
-section {
-    backdrop-filter: blur(5px);
+/* EYEBROW */
+
+.ars-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid #67e8f940;
+  border-radius: 30px;
+  background: #67e8f90c;
+  color: #a5f3fc;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
 }
 
-/* Smooth transitions */
-button,
-.card,
-.panel {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.ars-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #67e8f9;
+  box-shadow: 0 0 13px #67e8f9;
+  animation: ars-pulse 1.6s infinite;
 }
 
-/* Hover glow */
-.card:hover,
-.panel:hover {
-    box-shadow:
-        0 0 18px rgba(0, 229, 255, 0.16),
-        0 0 30px rgba(255, 0, 200, 0.08);
+@keyframes ars-pulse {
+  50% { opacity: .3; }
 }
 
-/* Mobile optimization */
-@media (max-width: 768px) {
-    body {
-        background-position: center center;
-        background-attachment: scroll !important;
-    }
+/* HEADINGS */
 
-    body::before,
-    body::after {
-        position: absolute;
-    }
+.ars-heading {
+  max-width: 800px;
+  margin: 28px 0 16px;
+  font: 700 clamp(40px, 7vw, 74px)/1.05
+        "Space Grotesk", sans-serif;
+  letter-spacing: -.05em;
 }
 
-/* Reduced motion accessibility */
-@media (prefers-reduced-motion: reduce) {
-    body::before,
-    body::after {
-        animation: none;
-    }
+.ars-gradient {
+  color: transparent;
+  background: linear-gradient(
+    100deg,
+    #fff,
+    #67e8f9 48%,
+    #a78bfa
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+}
 
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-    }
- }
+.ars-intro {
+  max-width: 700px;
+  margin-bottom: 35px;
+  color: #a9b4ce;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+/* CONTENT CARD */
+
+.ars-content-card {
+  padding: clamp(22px, 4vw, 40px);
+  border: 1px solid #a78bfa35;
+  border-radius: 23px;
+  background: linear-gradient(
+    135deg,
+    #ffffff0c,
+    #ffffff03
+  );
+  transition: .35s;
+}
+
+.ars-content-card:hover {
+  transform: translateY(-5px);
+  border-color: #67e8f970;
+  box-shadow: 0 25px 65px #0005;
+}
+
+/* TOP ROW */
+
+.ars-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ars-badge {
+  padding: 9px 12px;
+  border: 1px solid #a78bfa40;
+  border-radius: 8px;
+  background: #a78bfa12;
+  color: #c4b5fd;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.ars-version {
+  color: #7784a5;
+  font-size: 10px;
+  letter-spacing: .1em;
+}
+
+/* CARD TITLE */
+
+.ars-title {
+  margin: 27px 0 10px;
+  font: 700 clamp(29px, 5vw, 44px)/1.15
+        "Space Grotesk", sans-serif;
+  letter-spacing: -.04em;
+}
+
+.ars-kicker {
+  margin: 0 0 18px;
+  color: #a78bfa;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+}
+
+.ars-description {
+  color: #b2bdd2;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+/* RANKING VISUALIZATION */
+
+.ars-visual {
+  margin-top: 28px;
+  padding: 22px;
+  border: 1px solid #8b9bc326;
+  border-radius: 17px;
+  background: #070c18d9;
+}
+
+.ars-visual-head {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 25px;
+  font-size: 11px;
+}
+
+.ars-visual-head span {
+  color: #7e8aa8;
+  font-size: 10px;
+}
+
+.ars-bars {
+  display: grid;
+  gap: 19px;
+}
+
+.ars-bar-row {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr) 28px;
+  gap: 10px;
+  align-items: center;
+  color: #b9c4db;
+  font-size: 11px;
+}
+
+.ars-track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #ffffff0d;
+}
+
+.ars-fill {
+  width: var(--ars-width);
+  height: 100%;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #6478ff, #67e8f9);
+  transform-origin: left;
+  animation: ars-reveal 1.3s ease-out;
+}
+
+.ars-bar-row:nth-child(2) .ars-fill {
+  background: linear-gradient(90deg, #7c3aed, #a78bfa);
+}
+
+.ars-bar-row:nth-child(3) .ars-fill {
+  background: linear-gradient(90deg, #0d9488, #5eead4);
+}
+
+.ars-bar-row:nth-child(4) .ars-fill {
+  background: linear-gradient(90deg, #b45309, #fbbf24);
+}
+
+@keyframes ars-reveal {
+  from { transform: scaleX(.02); }
+  to { transform: scaleX(1); }
+}
+
+.ars-value {
+  text-align: right;
+  color: #d5ddf2;
+}
+
+.ars-note {
+  margin: 20px 0 0;
+  color: #7583a3;
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+/* FEATURES */
+
+.ars-features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.ars-feature {
+  padding: 18px;
+  border: 1px solid #a5b4fc18;
+  border-radius: 14px;
+  background: #ffffff04;
+  transition: .3s;
+}
+
+.ars-feature:hover {
+  transform: translateY(-4px);
+  border-color: #67e8f95c;
+  background: #67e8f908;
+}
+
+.ars-emoji {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 23px;
+}
+
+.ars-feature strong {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 12px;
+}
+
+.ars-feature small {
+  color: #8e9bb7;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+/* BUTTONS */
+
+.ars-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.ars-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  min-height: 48px;
+  padding: 14px 20px;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+  transition: .25s;
+}
+
+.ars-btn:hover {
+  transform: translateY(-3px);
+}
+
+.ars-primary {
+  color: #07111c;
+  background: linear-gradient(110deg, #67e8f9, #a5b4fc);
+  box-shadow: 0 8px 28px #67e8f920;
+}
+
+.ars-secondary {
+  color: #e4eaff;
+  border-color: #a5b4fc35;
+  background: #ffffff05;
+}
+
+/* TAGS */
+
+.ars-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 25px;
+}
+
+.ars-tag {
+  padding: 8px 10px;
+  border: 1px solid #a5b4fc1c;
+  border-radius: 8px;
+  background: #a5b4fc08;
+  color: #b9c6e2;
+  font-size: 10px;
+}
+
+/* FOOTER */
+
+.ars-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 27px;
+  padding-top: 18px;
+  border-top: 1px solid #ffffff10;
+  color: #74809b;
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:650px) {
+  .ars-card-section {
+    padding: 10px;
+  }
+
+  .ars-project-card {
+    padding: 27px 17px;
+    border-radius: 21px;
+  }
+
+  .ars-features {
+    grid-template-columns: 1fr;
+  }
+
+  .ars-feature {
+    display: grid;
+    grid-template-columns: 35px 1fr;
+    column-gap: 10px;
+  }
+
+  .ars-emoji {
+    grid-row: span 2;
+  }
+
+  .ars-bar-row {
+    grid-template-columns: 75px minmax(0, 1fr) 25px;
+    gap: 8px;
+  }
+
+  .ars-visual {
+    padding: 16px 11px;
+  }
+
+  .ars-btn {
+    width: 100%;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media(prefers-reduced-motion:reduce) {
+  .ars-card-section *,
+  .ars-card-section *::before,
+  .ars-card-section *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+ 
+   
 </style>
 <link rel="stylesheet" href="./emailcorrection.css">  
 <script type="module" src="./emailcorrection.js"></script>  
@@ -2390,65 +2708,176 @@ button,
 </div>
 
 </div>
-<div class="section">
 
-<div class="analysis-board">
+<!-- ANALYSIS RANKING SYSTEM CARD -->
+<section class="ars-card-section">
 
-<h2 class="analysis-title">
-Analysis Dashboard
-</h2>
+  <div class="ars-project-card">
 
-<p class="analysis-sub">
-A private analytics workspace built for monitoring,
-visualizing and exploring data through an interactive
-password-protected environment.
-</p>
+    <div class="ars-grid"></div>
+    <div class="ars-glow"></div>
 
-<div class="analysis-card">
+    <div class="ars-eyebrow">
+      <span class="ars-dot"></span>
+      NEXORA PROJECTS / ANALYTICS
+    </div>
 
-<div class="analysis-badge">
-PRIVATE ACCESS
-</div>
+    <h2 class="ars-heading">
+      Intelligence meets
+      <span class="ars-gradient">ranking.</span>
+    </h2>
 
-<div class="analysis-name">
-Advanced Analysis Platform
-</div>
+    <p class="ars-intro">
+      A performance-driven analytics workspace designed to compare
+      views, evaluate website performance and visualize ranking trends
+      through a data-driven scoring framework.
+    </p>
 
-<div class="analysis-credit">
-SECURE
-</div>
+    <article class="ars-content-card">
 
-<div class="analysis-desc">
-A dedicated intelligence and analytics dashboard
-designed for security, data exploration,
-performance monitoring and advanced visualization.
-Built to organize information into a streamlined,
-professional workspace.
-</div>
+      <div class="ars-top">
+        <span class="ars-badge">FEATURED DIGITAL PROJECT</span>
+        <span class="ars-version">ANALYTICS / 001</span>
+      </div>
 
-<div class="analysis-btns">
+      <h3 class="ars-title">
+        Analysis
+        <span class="ars-gradient">Ranking System</span>
+      </h3>
 
-<a href=" https://ansh4013.github.io/control/index.html "
-target="_blank"
-class="analysis-btn primary">
-📊 OPEN DASHBOARD
-</a>
+      <div class="ars-kicker">
+        DATA · DISCOVERY · PERFORMANCE
+      </div>
 
-</div>
+      <p class="ars-description">
+        A dedicated ranking workspace featuring leaderboards,
+        scoring algorithms, ranking comparisons, performance trends
+        and analytics insights. Explore the system and discover how
+        performance data can be organized into meaningful rankings.
+      </p>
 
-<div class="analysis-tags">
-<span class="analysis-tag">Analytics</span>
-<span class="analysis-tag">Visualization</span>
-<span class="analysis-tag">Advanced ranking system</span>
-<span class="analysis-tag">Data Intelligence</span>
-<span class="analysis-tag">Dashboard</span>
-</div>
+      <!-- RANKING VISUALIZATION -->
 
-</div>
+      <div class="ars-visual">
 
-</div>
+        <div class="ars-visual-head">
+          <strong>RANKING ENGINE</strong>
+          <span>SCORING MODEL / PREVIEW</span>
+        </div>
 
-</div>
+        <div class="ars-bars">
+
+          <div class="ars-bar-row">
+            <span>Reach</span>
+            <div class="ars-track">
+              <div class="ars-fill" style="--ars-width:92%"></div>
+            </div>
+            <span class="ars-value">01</span>
+          </div>
+
+          <div class="ars-bar-row">
+            <span>Momentum</span>
+            <div class="ars-track">
+              <div class="ars-fill" style="--ars-width:76%"></div>
+            </div>
+            <span class="ars-value">02</span>
+          </div>
+
+          <div class="ars-bar-row">
+            <span>Consistency</span>
+            <div class="ars-track">
+              <div class="ars-fill" style="--ars-width:65%"></div>
+            </div>
+            <span class="ars-value">03</span>
+          </div>
+
+          <div class="ars-bar-row">
+            <span>Freshness</span>
+            <div class="ars-track">
+              <div class="ars-fill" style="--ars-width:83%"></div>
+            </div>
+            <span class="ars-value">04</span>
+          </div>
+
+        </div>
+
+        <p class="ars-note">
+          Illustrative visualization only — these bars are not
+          connected to live ranking data.
+        </p>
+
+      </div>
+
+      <!-- FEATURES -->
+
+      <div class="ars-features">
+
+        <div class="ars-feature">
+          <span class="ars-emoji">📊</span>
+          <strong>Live Leaderboard</strong>
+          <small>
+            Explore website rankings and performance comparisons.
+          </small>
+        </div>
+
+        <div class="ars-feature">
+          <span class="ars-emoji">⚡</span>
+          <strong>Ranking Algorithms</strong>
+          <small>
+            Compare scoring methods and performance factors.
+          </small>
+        </div>
+
+        <div class="ars-feature">
+          <span class="ars-emoji">📈</span>
+          <strong>Ranking Race</strong>
+          <small>
+            Visualize changes in views and ranking performance.
+          </small>
+        </div>
+
+      </div>
+
+      <!-- ACTION BUTTONS -->
+
+      <div class="ars-actions">
+
+        <a class="ars-btn ars-primary"
+           href="https://ansh4013.github.io/control/index.html"
+           target="_blank"
+           rel="noopener noreferrer">
+          ↗ OPEN RANKING SYSTEM
+        </a>
+
+        <a class="ars-btn ars-secondary"
+           href="https://ansh4013.github.io/dashboard/"
+           target="_blank"
+           rel="noopener noreferrer">
+          EXPLORE DASHBOARD →
+        </a>
+
+      </div>
+
+      <!-- TAGS -->
+
+      <div class="ars-tags">
+        <span class="ars-tag">Data Analytics</span>
+        <span class="ars-tag">Automated Ranking</span>
+        <span class="ars-tag">View Tracking</span>
+        <span class="ars-tag">Rank Fusion</span>
+        <span class="ars-tag">Performance Insights</span>
+      </div>
+
+    </article>
+
+    <div class="ars-footer">
+      <span>NEXORA / DIGITAL INTELLIGENCE</span>
+      <span>ANALYZE. COMPARE. EVOLVE.</span>
+    </div>
+
+  </div>
+
+</section>
 <div class="section">
 
     <div class="inspiration-board">
