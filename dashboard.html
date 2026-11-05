@@ -2976,6 +2976,349 @@ box-shadow:0 0 25px rgba(0,255,255,.35)!important;
   background: #ffffff05;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  background: #060913;
+  color: #f4f7ff;
+  font-family: Inter, Arial, sans-serif;
+}
+
+.chg-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  max-width: 950px;
+  margin: auto;
+  padding: clamp(24px, 6vw, 55px);
+  border: 1px solid #a78bfa45;
+  border-radius: 25px;
+  background:
+    radial-gradient(ellipse at 90% 0%, #7048c740, transparent 38%),
+    radial-gradient(ellipse at 0% 100%, #06b6d421, transparent 40%),
+    linear-gradient(145deg, #070b16, #101426 55%, #080c18);
+  box-shadow: 0 25px 80px #0008;
+}
+
+.chg-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(#a78bfa0b 1px, transparent 1px),
+    linear-gradient(90deg, #a78bfa0b 1px, transparent 1px);
+  background-size: 36px 36px;
+  animation: chg-gridmove 22s linear infinite;
+}
+
+@keyframes chg-gridmove {
+  to {
+    background-position: 36px 36px;
+  }
+}
+
+.chg-glow {
+  position: absolute;
+  z-index: -1;
+  right: -80px;
+  top: -100px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: #8b5cf650;
+  filter: blur(70px);
+}
+
+.chg-card .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid #67e8f940;
+  border-radius: 30px;
+  background: #67e8f90c;
+  color: #a5f3fc;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+}
+
+.chg-card .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #67e8f9;
+  box-shadow: 0 0 13px #67e8f9;
+  animation: chg-pulse 1.6s infinite;
+}
+
+@keyframes chg-pulse {
+  50% { opacity: .3; }
+}
+
+.chg-card h1 {
+  margin: 28px 0 16px;
+  font: 700 clamp(35px, 7vw, 65px)/1.08 "Space Grotesk", sans-serif;
+  letter-spacing: -.05em;
+}
+
+.chg-card .gradient {
+  color: transparent;
+  background: linear-gradient(100deg, #fff, #67e8f9 48%, #a78bfa);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.chg-card .intro {
+  max-width: 700px;
+  margin-bottom: 32px;
+  color: #a9b4ce;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.chg-card .panel {
+  padding: clamp(20px, 4vw, 35px);
+  border: 1px solid #a78bfa35;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #ffffff0c, #ffffff03);
+}
+
+.chg-card .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.chg-card .badge {
+  padding: 9px 12px;
+  border: 1px solid #a78bfa40;
+  border-radius: 8px;
+  background: #a78bfa12;
+  color: #c4b5fd;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.chg-card .index {
+  color: #7784a5;
+  font-size: 10px;
+  letter-spacing: .1em;
+}
+
+.chg-card .title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.chg-card .iconbox {
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid #67e8f955;
+  border-radius: 17px;
+  color: #67e8f9;
+  background: #67e8f910;
+  font-size: 34px;
+  box-shadow: 0 0 28px #67e8f91a;
+}
+
+.chg-card h2 {
+  margin: 0 0 7px;
+  font: 700 clamp(28px, 5vw, 42px)/1.1 "Space Grotesk", sans-serif;
+}
+
+.chg-card .kicker {
+  margin: 0;
+  color: #a78bfa;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+}
+
+.chg-card .description {
+  margin: 22px 0;
+  color: #b2bdd2;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.chg-card .timeline {
+  margin-top: 25px;
+  padding: 8px 20px;
+  border: 1px solid #8b9bc326;
+  border-radius: 17px;
+  background: #070c18d9;
+}
+
+.chg-card .item {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 19px 0;
+  border-bottom: 1px solid #ffffff10;
+}
+
+.chg-card .item:last-child {
+  border: 0;
+}
+
+.chg-card .marker {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #67e8f9;
+  box-shadow: 0 0 13px #67e8f9;
+}
+
+.chg-card .marker.purple {
+  background: #a78bfa;
+  box-shadow: 0 0 13px #a78bfa;
+}
+
+.chg-card .marker.teal {
+  background: #5eead4;
+  box-shadow: 0 0 13px #5eead4;
+}
+
+.chg-card .item strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+
+.chg-card .item small {
+  display: block;
+  color: #8e9bb7;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.chg-card .category {
+  padding: 7px 9px;
+  border: 1px solid #a5b4fc20;
+  border-radius: 7px;
+  color: #aebce0;
+  background: #a5b4fc08;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.chg-card .note {
+  margin: 15px 0 0;
+  color: #7583a3;
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+.chg-card .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.chg-card .btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 48px;
+  padding: 14px 20px;
+  border-radius: 11px;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+  transition: .25s;
+}
+
+.chg-card .btn:hover {
+  transform: translateY(-3px);
+}
+
+.chg-card .primary {
+  color: #07111c;
+  background: linear-gradient(110deg, #67e8f9, #a5b4fc);
+  box-shadow: 0 8px 28px #67e8f920;
+}
+
+.chg-card .secondary {
+  color: #e4eaff;
+  border: 1px solid #a5b4fc35;
+  background: #ffffff05;
+}
+
+.chg-card .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 25px;
+}
+
+.chg-card .tag {
+  padding: 8px 10px;
+  border: 1px solid #a5b4fc1c;
+  border-radius: 8px;
+  background: #a5b4fc08;
+  color: #b9c6e2;
+  font-size: 10px;
+}
+
+.chg-card footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 27px;
+  padding-top: 18px;
+  border-top: 1px solid #ffffff10;
+  color: #74809b;
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+
+@media (max-width: 600px) {
+  body { padding: 9px; }
+
+  .chg-card { padding: 25px 17px; }
+
+  .chg-card .timeline { padding: 5px 12px; }
+
+  .chg-card .item {
+    grid-template-columns: 12px minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .chg-card .category {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .chg-card .btn { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chg-card *,
+  .chg-card *::before,
+  .chg-card *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 /* TAGS */
 
 .ars-tags {
@@ -3098,180 +3441,113 @@ box-shadow:0 0 25px rgba(0,255,255,.35)!important;
     <div class="stat"><div class="stat-num">1k+</div><div class="stat-label">Followers</div></div>
   </div>
 
-<!-- ANALYSIS RANKING SYSTEM CARD -->
-<section class="ars-card-section">
 
-  <div class="ars-project-card">
 
-    <div class="ars-grid"></div>
-    <div class="ars-glow"></div>
+<section class="chg-section">
+  <div class="chg-card">
+    <div class="chg-grid"></div>
+    <div class="chg-glow"></div>
 
-    <div class="ars-eyebrow">
-      <span class="ars-dot"></span>
-      NEXORA PROJECTS / ANALYTICS
+    <div class="chg-eyebrow">
+      <span class="chg-dot"></span>
+      CONTROL SYSTEM / RELEASE NOTES
     </div>
 
-    <h2 class="ars-heading">
-      Intelligence meets
-      <span class="ars-gradient">ranking.</span>
+    <h2 class="chg-heading">
+      Every update.<br>
+      <span class="chg-gradient">Clearly documented.</span>
     </h2>
 
-    <p class="ars-intro">
-      A performance-driven analytics workspace designed to compare
-      views, evaluate website performance and visualize ranking trends
-      through a data-driven scoring framework.
+    <p class="chg-intro">
+      Follow the evolution of the ranking system, workspace and chatbot
+      analytics. Explore improvements, new capabilities, fixes and
+      platform changes in one place.
     </p>
 
-    <article class="ars-content-card">
-
-      <div class="ars-top">
-        <span class="ars-badge">FEATURED DIGITAL PROJECT</span>
-        <span class="ars-version">ANALYTICS / 001</span>
+    <article class="chg-panel">
+      <div class="chg-panel-top">
+        <span class="chg-badge">PRODUCT UPDATES</span>
+        <span class="chg-index">CHANGELOG / RELEASE HISTORY</span>
       </div>
 
-      <h3 class="ars-title">
-        Analysis
-        <span class="ars-gradient">Ranking System</span>
-      </h3>
-
-      <div class="ars-kicker">
-        DATA · DISCOVERY · PERFORMANCE
+      <div class="chg-title-row">
+        <div class="chg-icon">↻</div>
+        <div>
+          <h3>What's new</h3>
+          <p class="chg-kicker">UPDATES · IMPROVEMENTS · FIXES</p>
+        </div>
       </div>
 
-      <p class="ars-description">
-        A dedicated ranking workspace featuring leaderboards,
-        scoring algorithms, ranking comparisons, performance trends
-        and analytics insights. Explore the system and discover how
-        performance data can be organized into meaningful rankings.
+      <p class="chg-description">
+        A central place to review what's changed across the platform.
+        Check release notes for ranking-system updates, workspace
+        enhancements and chatbot analytics improvements.
       </p>
 
-      <!-- RANKING VISUALIZATION -->
-
-      <div class="ars-visual">
-
-        <div class="ars-visual-head">
-          <strong>RANKING ENGINE</strong>
-          <span>SCORING MODEL / PREVIEW</span>
+      <div class="chg-timeline">
+        <div class="chg-timeline-item">
+          <span class="chg-timeline-marker"></span>
+          <div>
+            <strong>Ranking System</strong>
+            <small>Ranking experience, scoring and leaderboard updates</small>
+          </div>
+          <span class="chg-category">RANKING</span>
         </div>
 
-        <div class="ars-bars">
-
-          <div class="ars-bar-row">
-            <span>Reach</span>
-            <div class="ars-track">
-              <div class="ars-fill" style="--ars-width:92%"></div>
-            </div>
-            <span class="ars-value">01</span>
+        <div class="chg-timeline-item">
+          <span class="chg-timeline-marker purple"></span>
+          <div>
+            <strong>Workspace</strong>
+            <small>Interface refinements and workspace improvements</small>
           </div>
-
-          <div class="ars-bar-row">
-            <span>Momentum</span>
-            <div class="ars-track">
-              <div class="ars-fill" style="--ars-width:76%"></div>
-            </div>
-            <span class="ars-value">02</span>
-          </div>
-
-          <div class="ars-bar-row">
-            <span>Consistency</span>
-            <div class="ars-track">
-              <div class="ars-fill" style="--ars-width:65%"></div>
-            </div>
-            <span class="ars-value">03</span>
-          </div>
-
-          <div class="ars-bar-row">
-            <span>Freshness</span>
-            <div class="ars-track">
-              <div class="ars-fill" style="--ars-width:83%"></div>
-            </div>
-            <span class="ars-value">04</span>
-          </div>
-
+          <span class="chg-category">WORKSPACE</span>
         </div>
 
-        <p class="ars-note">
-          Illustrative visualization only — these bars are not
-          connected to live ranking data.
-        </p>
-
+        <div class="chg-timeline-item">
+          <span class="chg-timeline-marker teal"></span>
+          <div>
+            <strong>Chatbot Analytics</strong>
+            <small>Analytics features, fixes and experience updates</small>
+          </div>
+          <span class="chg-category">ANALYTICS</span>
+        </div>
       </div>
 
-      <!-- FEATURES -->
+      <p class="chg-note">
+        Release categories shown above are an overview, not dated
+        or versioned release entries.
+      </p>
 
-      <div class="ars-features">
+      <div class="chg-actions">
+        <a class="chg-btn chg-primary"
+           href="https://ansh4013.github.io/control/changelog.html"
+           target="_blank" rel="noopener noreferrer">
+          ↗ VIEW FULL CHANGELOG
+        </a>
 
-        <div class="ars-feature">
-          <span class="ars-emoji">📊</span>
-          <strong>Live Leaderboard</strong>
-          <small>
-            Explore website rankings and performance comparisons.
-          </small>
-        </div>
-
-        <div class="ars-feature">
-          <span class="ars-emoji">⚡</span>
-          <strong>Ranking Algorithms</strong>
-          <small>
-            Compare scoring methods and performance factors.
-          </small>
-        </div>
-
-        <div class="ars-feature">
-          <span class="ars-emoji">📈</span>
-          <strong>Ranking Race</strong>
-          <small>
-            Visualize changes in views and ranking performance.
-          </small>
-        </div>
-
-      </div>
-
-      <!-- ACTION BUTTONS -->
-
-      <div class="ars-actions">
-
-        <a class="ars-btn ars-primary"
+        <a class="chg-btn chg-secondary"
            href="https://ansh4013.github.io/control/index.html"
-           target="_blank"
-           rel="noopener noreferrer">
-          ↗ OPEN RANKING SYSTEM
+           target="_blank" rel="noopener noreferrer">
+          BACK TO RANKING SYSTEM →
         </a>
-
-        <a class="ars-btn ars-secondary"
-           href="https://ansh4013.github.io/dashboard/"
-           target="_blank"
-           rel="noopener noreferrer">
-          EXPLORE DASHBOARD →
-        </a>
-
       </div>
 
-      <!-- TAGS -->
-
-      <div class="ars-tags">
-        <span class="ars-tag">Data Analytics</span>
-        <span class="ars-tag">Automated Ranking</span>
-        <span class="ars-tag">View Tracking</span>
-        <span class="ars-tag">Rank Fusion</span>
-        <span class="ars-tag">Performance Insights</span>
+      <div class="chg-tags">
+        <span class="chg-tag">Release Notes</span>
+        <span class="chg-tag">Platform Updates</span>
+        <span class="chg-tag">Improvements</span>
+        <span class="chg-tag">Bug Fixes</span>
       </div>
-
     </article>
 
-    <div class="ars-footer">
-      <span>NEXORA / DIGITAL INTELLIGENCE</span>
-      <span>ANALYZE. COMPARE. EVOLVE.</span>
+    <div class="chg-footer">
+      <span>CONTROL SYSTEM / CHANGELOG</span>
+      <span>BUILD. IMPROVE. EVOLVE.</span>
     </div>
-
   </div>
-
 </section>
-
 <div class="section">
-
 <div class="channel-board">
-
     <div class="channel-particles">
         <span></span>
         <span></span>
