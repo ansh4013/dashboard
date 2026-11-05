@@ -1,8 +1,10 @@
  <!DOCTYPE html>
 <html lang="en"> 
 <head>
-<script>  if(localStorage.getItem("loggedIn") ! == "true") { window.location.replace( "https://ansh4013.github.io/dashboard/login.html");  
- }
+<script>
+if(sessionStorage.getItem("nexora_logged_in") !== "1") {
+  window.location.replace("https://ansh4013.github.io/control/loginmain.html");
+}
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
