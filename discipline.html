@@ -554,5 +554,15 @@ function removeHabit(id) {
   renderHabitsManage();
 }
 </script>
+<script src="https://ansh4013.github.io/control/analysis-flags.js"></script>
+<script>
+  const flags = AnalysisFlags.create(
+    [{"key":"streaming-responses","on":true,"rollout":25,"env":["prod"]},{"key":"bento-dashboard","on":true,"rollout":100,"env":["prod","dev"]},{"key":"voice-input","on":false,"rollout":0,"env":["dev"]},{"key":"user-s-part","on":false,"rollout":90,"env":["dev","prod"]}],
+    { env: "prod" }
+  );
+  if (flags.isOn("streaming-responses")) {
+    // show the new experience
+  }
+</script>
 </body>
 </html>
