@@ -4640,10 +4640,11 @@ class="starlink-btn primary">
 })();
      </script>
 <script>
-function logout(){
-localStorage.removeItem( "loggedIn");
-alert("Login removed");
-location.reload();}</script>
+function logout() { localStorage.removeItem("nexora_logged_in");
+  localStorage.removeItem("nexora_user");
+  localStorage.removeItem("loggedIn");
+  window.location.href = "https://ansh4013.github.io/control/loginmain.html";
+}
         <a href="#contactSection" class="founder-btn">
             CONTACT NOW
         </a>
