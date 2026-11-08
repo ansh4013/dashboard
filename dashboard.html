@@ -4597,54 +4597,13 @@ class="starlink-btn primary">
 
         </div>
 <button onclick="logout()">Test Logout</button>
-     <script>
-/* =====================================
-   ITZ DASHBOARD — INTERACTIVE LIGHT
-===================================== */
-
-(function () {
-    const root = document.body;
-
-    function updateLight(x, y) {
-        root.style.setProperty(
-            "--mouse-x",
-            (x / window.innerWidth * 100) + "%"
-        );
-
-        root.style.setProperty(
-            "--mouse-y",
-            (y / window.innerHeight * 100) + "%"
-        );
-    }
-
-    // Desktop mouse interaction
-    document.addEventListener("pointermove", function (event) {
-        updateLight(event.clientX, event.clientY);
-    }, { passive: true });
-
-    // Mobile touch interaction
-    document.addEventListener("touchmove", function (event) {
-        if (!event.touches.length) return;
-
-        updateLight(
-            event.touches[0].clientX,
-            event.touches[0].clientY
-        );
-    }, { passive: true });
-
-    // Initial glow position
-    updateLight(
-        window.innerWidth / 2,
-        window.innerHeight / 2
-    );
-})();
-     </script>
 <script>
 function logout() { localStorage.removeItem("nexora_logged_in");
   localStorage.removeItem("nexora_user");
   localStorage.removeItem("loggedIn");
   window.location.href = "https://ansh4013.github.io/control/loginmain.html";
 }
+</script>
         <a href="#contactSection" class="founder-btn">
             CONTACT NOW
         </a>
