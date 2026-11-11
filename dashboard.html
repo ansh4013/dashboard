@@ -514,6 +514,241 @@ if (localStorage.getItem("nexora_logged_in") !== "1") {
     transition:.3s ease;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(135deg, #07111e, #10152b, #091a25);
+  color: #edf6ff;
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  padding: 25px 16px;
+}
+
+.pmx-section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 15px 0;
+}
+
+.pmx-hero {
+  padding: 42px 30px;
+  border-radius: 24px;
+  border: 1px solid #254b65;
+  background: linear-gradient(125deg, #102c40, #171d38, #102b35);
+  position: relative;
+  overflow: hidden;
+}
+
+.pmx-hero::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border: 1px solid #00e5ff55;
+  border-radius: 50%;
+  right: -70px;
+  top: -80px;
+  box-shadow: 0 0 0 35px #00e5ff0b,
+              0 0 0 70px #00e5ff08;
+  pointer-events: none;
+}
+
+.pmx-tag,
+.pmx-vision > span {
+  color: #00e5ff;
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+.pmx-hero h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(25px, 4vw, 40px);
+  line-height: 1.4;
+  margin: 20px 0 10px;
+}
+
+.pmx-hero h1 span {
+  display: block;
+  color: #00e5ff;
+}
+
+.pmx-hero h2 {
+  color: #ff985e;
+  font-size: 17px;
+  margin-bottom: 15px;
+}
+
+.pmx-hero p {
+  color: #c1d3e2;
+  line-height: 1.8;
+  font-size: 14px;
+  max-width: 750px;
+}
+
+.pmx-hero .pmx-lead {
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.pmx-description {
+  margin-top: 12px;
+}
+
+.pmx-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.pmx-btn {
+  display: inline-block;
+  padding: 13px 19px;
+  text-decoration: none;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 700;
+  transition: .3s;
+}
+
+.pmx-primary {
+  background: #00d9ed;
+  color: #06131d;
+}
+
+.pmx-secondary {
+  color: #dffaff;
+  border: 1px solid #42647b;
+}
+
+.pmx-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px #00e5ff30;
+}
+
+.pmx-heading {
+  margin: 38px 0 20px;
+}
+
+.pmx-heading span {
+  color: #00e5ff;
+  letter-spacing: 3px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.pmx-heading h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
+  margin: 12px 0;
+}
+
+.pmx-heading p {
+  color: #9db2c6;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.pmx-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.pmx-card {
+  padding: 22px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #16293b, #111c2b);
+  border: 1px solid #293f54;
+  transition: .3s;
+}
+
+.pmx-card:hover {
+  transform: translateY(-5px);
+  border-color: #00e5ff;
+  box-shadow: 0 10px 30px #00e5ff12;
+}
+
+.pmx-icon {
+  font-size: 27px;
+  color: #00e5ff;
+  margin-bottom: 15px;
+}
+
+.pmx-card h3 {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.pmx-card p {
+  font-size: 12px;
+  color: #a8bacb;
+  line-height: 1.8;
+}
+
+.pmx-vision {
+  margin-top: 25px;
+  padding: 35px 25px;
+  text-align: center;
+  border: 1px solid #294b60;
+  border-radius: 20px;
+  background: linear-gradient(120deg, #10283b, #191b36);
+}
+
+.pmx-vision h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(19px, 3vw, 29px);
+  line-height: 1.6;
+  margin: 15px 0;
+}
+
+.pmx-vision h2 strong {
+  color: #00e5ff;
+}
+
+.pmx-vision p {
+  max-width: 600px;
+  margin: auto;
+  color: #a9bdce;
+  line-height: 1.8;
+  font-size: 13px;
+}
+
+.pmx-brand {
+  margin-top: 24px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #d9f7ff;
+}
+
+.pmx-brand span {
+  color: #00e5ff;
+}
+
+@media (max-width: 700px) {
+  .pmx-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pmx-hero {
+    padding: 28px 20px;
+  }
+}
+
+@media (max-width: 460px) {
+  .pmx-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
 .floating-feedback:hover{
     transform:translateY(-3px) scale(1.05);
 }
@@ -3868,6 +4103,170 @@ body {
   </div>
 
 
+<!-- PMX SaaS PRODUCT & ECOSYSTEM CARD -->
+<section class="pmx-section">
+
+  <div class="pmx-hero">
+
+    <div class="pmx-tag">
+      NEXORA ECOSYSTEM • SOFTWARE AS A SERVICE
+    </div>
+
+    <h1>
+      PMX — PRODUCT MANAGEMENT
+      <span>& ECOSYSTEM PLATFORM</span>
+    </h1>
+
+    <h2>Next-Generation SaaS Environment</h2>
+
+    <p class="pmx-lead">
+      Manage Products. Connect Ecosystems. Accelerate Innovation.
+    </p>
+
+    <p class="pmx-description">
+      PMX is an integrated Software-as-a-Service (SaaS) platform
+      designed to bring product management, business operations,
+      team collaboration, performance monitoring and digital
+      ecosystems together in one unified environment.
+    </p>
+
+    <p class="pmx-description">
+      Plan, build, manage, monitor and scale software products while
+      connecting applications, services, teams and operational
+      workflows through a centralized digital ecosystem.
+    </p>
+
+    <div class="pmx-actions">
+
+      <a href="https://ansh4013.github.io/control/analysis-workspace.html"
+         class="pmx-btn pmx-primary">
+        EXPLORE PMX WORKSPACE ↗
+      </a>
+
+      <a href="https://ansh4013.github.io/control/"
+         class="pmx-btn pmx-secondary">
+        ENTER CONTROL ROOM ↗
+      </a>
+
+    </div>
+
+  </div>
+
+  <div class="pmx-heading">
+    <span>PLATFORM ECOSYSTEM</span>
+    <h2>One Platform. Multiple Capabilities.</h2>
+    <p>
+      An interconnected environment for managing products,
+      people, technology and business operations.
+    </p>
+  </div>
+
+  <div class="pmx-grid">
+
+    <article class="pmx-card">
+      <div class="pmx-icon">◈</div>
+      <h3>Product Management</h3>
+      <p>
+        Manage product portfolios, roadmaps, development stages
+        and complete product lifecycles.
+      </p>
+    </article>
+
+    <article class="pmx-card">
+      <div class="pmx-icon">◎</div>
+      <h3>Ecosystem Management</h3>
+      <p>
+        Connect software products, applications, platforms,
+        services and business environments.
+      </p>
+    </article>
+
+    <article class="pmx-card">
+      <div class="pmx-icon">▦</div>
+      <h3>Project & Workflow</h3>
+      <p>
+        Coordinate teams, assign responsibilities, organize
+        tasks and manage execution.
+      </p>
+    </article>
+
+    <article class="pmx-card">
+      <div class="pmx-icon">⌁</div>
+      <h3>Analytics & Intelligence</h3>
+      <p>
+        Monitor KPIs, operational performance, progress
+        and product insights.
+      </p>
+    </article>
+
+    <article class="pmx-card">
+      <div class="pmx-icon">⬡</div>
+      <h3>Team & Access Management</h3>
+      <p>
+        Organize collaboration, team roles, workspace
+        access and permissions.
+      </p>
+    </article>
+
+    <article class="pmx-card">
+      <div class="pmx-icon">✧</div>
+      <h3>Operational Control</h3>
+      <p>
+        Monitor activities, priorities, resources
+        and product operations.
+      </p>
+    </article>
+
+    <article class="pmx-card">
+      <div class="pmx-icon">⌘</div>
+      <h3>SaaS Infrastructure</h3>
+      <p>
+        Build a foundation for cloud-based access,
+        scalable services and subscription offerings.
+      </p>
+    </article>
+
+    <article class="pmx-card">
+      <div class="pmx-icon">∞</div>
+      <h3>Connected Digital Ecosystem</h3>
+      <p>
+        Bring multiple digital products and services
+        into one coordinated environment.
+      </p>
+    </article>
+
+    <article class="pmx-card">
+      <div class="pmx-icon">✦</div>
+      <h3>Innovation & Scalability</h3>
+      <p>
+        Support future products, integrations,
+        expansion and digital innovation.
+      </p>
+    </article>
+
+  </div>
+
+  <div class="pmx-vision">
+    <span>OUR VISION</span>
+
+    <h2>
+      One Platform. Multiple Products.<br>
+      <strong>Connected Ecosystems.</strong>
+    </h2>
+
+    <p>
+      Creating an interconnected digital environment where
+      products, people, technology and business operations
+      work together.
+    </p>
+
+    <div class="pmx-brand">
+      PMX <span>•</span> POWERING DIGITAL ECOSYSTEMS
+    </div>
+  </div>
+
+</section>
+<!-- END PMX CARD -->
 
 <section class="chg-section">
   <div class="chg-card">
@@ -3972,76 +4371,6 @@ body {
     </div>
   </div>
 </section>
-<div class="section">
-<div class="channel-board">
-    <div class="channel-particles">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-
-    <div class="channel-orb"></div>
-    <div class="channel-ring"></div>
-
-    <h2 class="channel-title">
-        Community Channel
-    </h2>
-
-    <p class="channel-sub">
-        Follow our official WhatsApp Channel for updates,
-        announcements, technology insights, AI projects,
-        future innovations and community activities.
-    </p>
-
-    <div class="channel-card">
-
-        <div class="channel-badge">
-            OFFICIAL CHANNEL
-        </div>
-
-        <div class="channel-name">
-            WhatsApp Community
-        </div>
-
-        <div class="channel-credit">
-            STAY CONNECTED
-        </div>
-
-        <div class="channel-desc">
-            Join our official WhatsApp Channel and become part
-            of a growing technology community. Get instant updates
-            on projects, innovation, AI developments, future launches,
-            research initiatives and important announcements.
-        </div>
-
-        <div class="channel-btns">
-
-            <a href="https://whatsapp.com/channel/0029Vb8rod5F1YlU1qqcGj2a"
-               target="_blank"
-               class="channel-btn primary">
-               📢 JOIN CHANNEL
-            </a>
-
-        </div>
-
-        <div class="channel-tags">
-            <span class="channel-tag">Technology</span>
-            <span class="channel-tag">Innovation</span>
-            <span class="channel-tag">Projects</span>
-            <span class="channel-tag">Artificial Intelligence</span>
-            <span class="channel-tag">Future Tech</span>
-            <span class="channel-tag">Community</span>
-        </div>
-
-    </div>
-
-</div>
-
-</div>
-
 <!-- ANALYSIS RANKING SYSTEM CARD -->
 <section class="ars-card-section">
 
@@ -4211,6 +4540,76 @@ body {
   </div>
 
 </section>
+<div class="section">
+<div class="channel-board">
+    <div class="channel-particles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="channel-orb"></div>
+    <div class="channel-ring"></div>
+
+    <h2 class="channel-title">
+        Community Channel
+    </h2>
+
+    <p class="channel-sub">
+        Follow our official WhatsApp Channel for updates,
+        announcements, technology insights, AI projects,
+        future innovations and community activities.
+    </p>
+
+    <div class="channel-card">
+
+        <div class="channel-badge">
+            OFFICIAL CHANNEL
+        </div>
+
+        <div class="channel-name">
+            WhatsApp Community
+        </div>
+
+        <div class="channel-credit">
+            STAY CONNECTED
+        </div>
+
+        <div class="channel-desc">
+            Join our official WhatsApp Channel and become part
+            of a growing technology community. Get instant updates
+            on projects, innovation, AI developments, future launches,
+            research initiatives and important announcements.
+        </div>
+
+        <div class="channel-btns">
+
+            <a href="https://whatsapp.com/channel/0029Vb8rod5F1YlU1qqcGj2a"
+               target="_blank"
+               class="channel-btn primary">
+               📢 JOIN CHANNEL
+            </a>
+
+        </div>
+
+        <div class="channel-tags">
+            <span class="channel-tag">Technology</span>
+            <span class="channel-tag">Innovation</span>
+            <span class="channel-tag">Projects</span>
+            <span class="channel-tag">Artificial Intelligence</span>
+            <span class="channel-tag">Future Tech</span>
+            <span class="channel-tag">Community</span>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
 <div class="section">
 
     <div class="inspiration-board">
